@@ -21,6 +21,16 @@ else {
   <meta charset="UTF-8">
   <title>Welcome <?= $first_name.' '.$last_name ?></title>
   <?php include 'css/css.html'; ?>
+  <style>
+	.frame {
+		margin: 0;
+		background-color: black;
+		display: flex;
+	}
+	#canvas {
+		display: none;
+	}
+  </style>
 </head>
 
 <body>
@@ -30,19 +40,23 @@ else {
           
           <p>
           <?php 
-     
           // Display message about account verification link only once
           if ( isset($_SESSION['message']) )
           {
               echo $_SESSION['message'];
-              
               // Don't annoy the user with more messages upon page refresh
               unset( $_SESSION['message'] );
           }
-          
           ?>
           </p>
-          
+          <div class="frame">
+		  	<video id="video" width="400" height="300"></video>
+			  <canvas id="canvas" width="400" height="300"></canvas>
+			  <img src="http://placekitten.com/g/400/300" alt="" id="photo">
+		  </div>
+		  <div>
+		  	<a href="#" id="capture">Take picture</a>
+		  </div>
           <?php
           
           // Keep reminding the user this account is not active, until they activate
@@ -64,7 +78,7 @@ else {
     </div>
     
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src="js/index.js"></script>
+<script src="js/camera.js"></script>
 
 </body>
 </html>
