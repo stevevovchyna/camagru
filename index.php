@@ -1,6 +1,7 @@
 <?php 
 /* Main page with two forms: sign up and log in */
 require 'db.php';
+include 'indexito.php';
 session_start();
 ?>
 <!DOCTYPE html>
@@ -10,19 +11,6 @@ session_start();
 	<title>Sign-Up/Login Form</title>
 	<?php include 'css/css.html'; ?>
 </head>
-
-<?php 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') 
-{
-    if (isset($_POST['login'])) { //user logging in
-        require 'login.php';
-    }
-    elseif (isset($_POST['register'])) { //user registering   
-        require 'register.php';
-    }
-}
-?>
-
 <body>
 	<div class="form">
 
