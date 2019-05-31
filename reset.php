@@ -8,13 +8,19 @@ session_start();
 // Make sure email and hash variables aren't empty
 if( isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !empty($_GET['hash']) )
 {
-    $email = $mysqli->escape_string($_GET['email']); 
-    $hash = $mysqli->escape_string($_GET['hash']); 
-
+    $email = $_GET['email'];
+    $hash = $_GET['hash']; 
     // Make sure user email with matching hash exist
-    $result = $mysqli->query("SELECT * FROM users WHERE email='$email' AND hash='$hash'");
-
-    if ( $result->num_rows == 0 )
+	$query = "SELECT * FROM users WHERE email = :email AND hash = :hash";
+	$statement = $pdo->prepare($query);
+	$statement->execute(
+		array(
+			'email' => $email,
+			'hash' => $hash
+		)
+	);
+	$count = $statement->rowCount();
+    if ( $count == 0 )
     { 
         $_SESSION['message'] = "You have entered invalid URL for password reset!";
         header("location: error.php");

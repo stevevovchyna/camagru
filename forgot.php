@@ -6,21 +6,27 @@ session_start();
 // Check if form submitted with method="post"
 if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) 
 {   
-    $email = $mysqli->escape_string($_POST['email']);
-    $result = $mysqli->query("SELECT * FROM users WHERE email='$email'");
-
-    if ( $result->num_rows == 0 ) // User doesn't exist
+    $email = $_POST['email'];
+	$query = "SELECT * FROM users WHERE email = :email";
+	$statement = $pdo->prepare($query);
+	$statement->execute(
+		array(
+			'email' => $email
+		)
+	);
+	$count = $statement->rowCount();
+    if ( $count == 0 ) // User doesn't exist
     { 
         $_SESSION['message'] = "User with that email doesn't exist!";
         header("location: error.php");
     }
     else { // User exists (num_rows != 0)
 
-        $user = $result->fetch_assoc(); // $user becomes array with user data
+        $user = $statement->fetchAll(PDO::FETCH_ASSOC); // $user becomes array with user data
         
-        $email = $user['email'];
-        $hash = $user['hash'];
-        $first_name = $user['first_name'];
+        $email = $user[0]['email'];
+        $hash = $user[0]['hash'];
+        $first_name = $user[0]['first_name'];
 
         // Session message to display on success.php
         $_SESSION['message'] = "Please check your email $email"

@@ -12,23 +12,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $new_password = password_hash($_POST['newpassword'], PASSWORD_BCRYPT);
         
         // We get $_POST['email'] from the hidden input field of reset.php form
-        $email = $mysqli->escape_string($_POST['email']);
-        $hash = $mysqli->escape_string($_POST['hash']);
-        
-        $sql = "UPDATE users SET password='$new_password' WHERE email='$email' AND hash='$hash'";
-
-        if ( $mysqli->query($sql) ) {
-
-        $_SESSION['message'] = "Your password has been reset successfully!";
-        header("location: success.php");    
-
+        $email = $_POST['email'];
+		$hash = $_POST['hash'];
+		$query = "UPDATE users SET password = :new_password WHERE email = :email AND hash = :hash";
+		$statement = $pdo->prepare($query);
+		$result = $statement->execute(
+			array(
+				'email' => $email,
+				'new_password' => $new_password,
+				'hash' => $hash
+			)
+		);
+        if ($result) {
+        	$_SESSION['message'] = "Your password has been reset successfully!";
+        	header("location: success.php");    
         }
-
     }
     else {
         $_SESSION['message'] = "Two passwords you entered don't match, try again!";
         header("location: error.php");    
     }
-
 }
 ?>
