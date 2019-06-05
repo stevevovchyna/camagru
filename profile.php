@@ -22,14 +22,13 @@ else {
   <title>Welcome <?= $first_name.' '.$last_name ?></title>
 
   <style>
-	.frame {
-		margin: 0;
-		background-color: black;
-		display: flex;
-	}
-	#canvas {
-		display: none;
-	}
+.frame {
+	margin: 0;
+	display: flex;
+}
+#canvas {
+	display: none;
+}
 
 * {
   box-sizing: border-box;
@@ -43,7 +42,7 @@ body {
 /* The grid: Four equal columns that floats next to each other */
 .column {
   float: left;
-  width: 25%;
+  width: 33%;
   padding: 10px;
 }
 
@@ -70,15 +69,6 @@ body {
   display: none;
 }
 
-/* Expanding image text */
-#imgtext {
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
-  color: white;
-  font-size: 20px;
-}
-
 /* Closable button inside the expanded image */
 .closebtn {
   position: absolute;
@@ -87,7 +77,23 @@ body {
   color: white;
   font-size: 35px;
   cursor: pointer;
+  color: black;
 }
+
+#video {
+	position: relative;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+#expandedImg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 3;
+}
+
 </style>
 </head>
 
@@ -108,34 +114,30 @@ body {
           ?>
           </p>
           <div class="frame" style="display:inline-block;">
-		  	<video id="video" width="400" height="300"></video>
-			<canvas id="canvas" width="400" height="300"></canvas>
-		  </div>
-		  <div>
-		  	<a href="#" id="capture">Take picture</a>
-		  </div>
-		  <!-- <img id="cartoon" class="png" onclick="pngPicker('cartoon" src="images/cartoon.png">
-		  <img id="disnep" class="png" onclick="pngPicker('disnep')" src="images/disnep.png">
-		  <img id="trump" class="png" onclick="pngPicker('trump')" src="images/trump.png"> -->
-
-		  <div>
-		  	<div class="container">
-		  		<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
-		  		<img id="expandedImg">
-		  		<div id="imgtext"></div>
-		  	</div>
-		  	<div class="row">
-		  		<div class="column">
-		  			<img src="images/cartoon.png" alt="Nature" style="width:100%" onclick="myFunction(this);">
-		  		</div>
-		  		<div class="column">
-		  			<img src="images/disnep.png" alt="Snow" style="width:100%" onclick="myFunction(this);">
-		  		</div>
-		  		<div class="column">
-		  			<img src="images/trump.png" alt="Mountains" style="width:100%" onclick="myFunction(this);">
-		  		</div>
-		  	</div>
-		  </div>
+          	<div class="container">
+          		<video id="video" width="400" height="300"></video>
+          		<canvas id="canvas" width="400" height="300"></canvas>
+          		<span onclick="this.parentElement.style.display='none';png = ''" class="closebtn">&times;</span>
+          		<img id="expandedImg">
+          		<div id="imgtext"></div>
+          	</div>
+          	<div class="row">
+          		<div class="column">
+          			<img src="images/cartoon.png" alt="Nature" style="width:100%" onclick="myFunction(this);">
+          		</div>
+          		<div class="column">
+          			<img src="images/disnep.png" alt="Snow" style="width:100%" onclick="myFunction(this);">
+          		</div>
+          		<div class="column">
+          			<img src="images/trump.png" alt="Mountains" style="width:100%" onclick="myFunction(this);">
+          		</div>
+          	</div>
+          	<div>
+          		<a href="#" id="capture">Take picture</a>
+		  		<!-- <input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)">
+				  <p><img id="output" width="200" /></p> -->
+          	</div>
+          </div>
 		  <?php
 		  ?>
           <?php

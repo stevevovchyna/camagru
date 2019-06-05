@@ -30,7 +30,6 @@ var png = "";
 		xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xmlhttp.onreadystatechange = () => {
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-				console.log(xmlhttp.responseText);
 				var newImage = document.createElement("img");
 				newImage.setAttribute('src', xmlhttp.responseText);
 				document.body.appendChild(newImage);
@@ -48,5 +47,22 @@ function myFunction(imgs) {
 	imgText.innerHTML = imgs.alt;
 	expandImg.parentElement.style.display = "block";
 	png = imgs.src;
-	console.log(imgs.src);
 }
+
+// function loadFile(event) {
+// 	var image = document.getElementById('output');
+// 	image.src = URL.createObjectURL(event.target.files[0]);
+// 	var picture = URL.createObjectURL(event.target.files[0]);
+// 	var xmlhttp = new XMLHttpRequest();
+// 		xmlhttp.open("POST", "noWebCam.php");
+// 		xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+// 		xmlhttp.onreadystatechange = () => {
+// 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+// 				// var newImage = document.createElement("img");
+// 				// newImage.setAttribute('src', xmlhttp.responseText);
+// 				// document.body.appendChild(newImage);
+// 				console.log(xmlhttp.responseText);
+// 			}
+// 		}
+// 		xmlhttp.send("imgData=" + picture + "&png=" + png);
+// };
