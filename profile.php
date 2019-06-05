@@ -20,7 +20,7 @@ else {
 <head>
   <meta charset="UTF-8">
   <title>Welcome <?= $first_name.' '.$last_name ?></title>
-  <?php include 'css/css.html'; ?>
+
   <style>
 	.frame {
 		margin: 0;
@@ -30,7 +30,65 @@ else {
 	#canvas {
 		display: none;
 	}
-  </style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+/* The grid: Four equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 25%;
+  padding: 10px;
+}
+
+/* Style the images inside the grid */
+.column img {
+  opacity: 0.8; 
+  cursor: pointer; 
+}
+
+.column img:hover {
+  opacity: 1;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* The expanding image container */
+.container {
+  position: relative;
+  display: none;
+}
+
+/* Expanding image text */
+#imgtext {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  color: white;
+  font-size: 20px;
+}
+
+/* Closable button inside the expanded image */
+.closebtn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+}
+</style>
 </head>
 
 <body>
@@ -49,16 +107,38 @@ else {
           }
           ?>
           </p>
-          <div class="frame">
+          <div class="frame" style="display:inline-block;">
 		  	<video id="video" width="400" height="300"></video>
-			  <canvas id="canvas" width="400" height="300"></canvas>
-			  <img src="http://placekitten.com/g/400/300" alt="" id="photo">
+			<canvas id="canvas" width="400" height="300"></canvas>
 		  </div>
 		  <div>
 		  	<a href="#" id="capture">Take picture</a>
 		  </div>
+		  <!-- <img id="cartoon" class="png" onclick="pngPicker('cartoon" src="images/cartoon.png">
+		  <img id="disnep" class="png" onclick="pngPicker('disnep')" src="images/disnep.png">
+		  <img id="trump" class="png" onclick="pngPicker('trump')" src="images/trump.png"> -->
+
+		  <div>
+		  	<div class="container">
+		  		<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+		  		<img id="expandedImg">
+		  		<div id="imgtext"></div>
+		  	</div>
+		  	<div class="row">
+		  		<div class="column">
+		  			<img src="images/cartoon.png" alt="Nature" style="width:100%" onclick="myFunction(this);">
+		  		</div>
+		  		<div class="column">
+		  			<img src="images/disnep.png" alt="Snow" style="width:100%" onclick="myFunction(this);">
+		  		</div>
+		  		<div class="column">
+		  			<img src="images/trump.png" alt="Mountains" style="width:100%" onclick="myFunction(this);">
+		  		</div>
+		  	</div>
+		  </div>
+		  <?php
+		  ?>
           <?php
-          
           // Keep reminding the user this account is not active, until they activate
           if ( !$active ){
               echo
@@ -67,7 +147,6 @@ else {
               on the email link!
               </div>';
           }
-          
           ?>
           
           <h2><?php echo $first_name.' '.$last_name; ?></h2>
@@ -77,7 +156,6 @@ else {
 
     </div>
     
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src="js/camera.js"></script>
 
 </body>
