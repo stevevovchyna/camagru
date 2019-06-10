@@ -36,7 +36,7 @@ var png = "";
 			case 'JPG':
 				return "";
 			}
-		return "Your file type is not png, gif, jpeg or jpg. Please provide a valid imamge file";
+		return "Your file type is not png, gif, jpeg or jpg. Please provide a valid image file";
 	}
 
 	document.getElementById('_submit').addEventListener('click', () => {
