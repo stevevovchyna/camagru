@@ -24,7 +24,6 @@ var png = "";
 	function dataTypeCheck(name) {
 		var check = name;
 		check = check.slice(check.indexOf(".") + 1);
-		console.log(check);
 		switch (check) {
 			case 'png':
 				return "";
@@ -45,11 +44,11 @@ var png = "";
 		var _file = document.getElementById('_file');
 		var _progress = document.getElementById('_progress');
 		if (_file.files.length === 0) {
+			document.getElementById('response').innerText = "Please choose the file!";
 			return;
 		}
 		var typeError = dataTypeCheck(_file.files[0].name);
 		document.getElementById('response').innerText = typeError;
-
 		var data = new FormData();
 		data.append('SelectedFile', _file.files[0]);
 		data.set('PNG', png);
