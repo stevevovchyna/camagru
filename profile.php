@@ -133,9 +133,10 @@ body {
           		</div>
           	</div>
           	<div>
-          		<a href="#" id="capture">Take picture</a>
-		  		<!-- <input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)">
-				  <p><img id="output" width="200" /></p> -->
+          		<button id="capture">Take picture</button>
+				<input type='file' id='_file'>
+				<input type='button' id='_submit' value='Upload!'>	
+				<p id="response"></p>
           	</div>
           </div>
 		  <?php

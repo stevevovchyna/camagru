@@ -21,6 +21,59 @@ var png = "";
 		console.log(err.code);
 	});
 
+	function dataTypeCheck(name) {
+		var check = name;
+		check = check.slice(check.indexOf(".") + 1);
+		console.log(check);
+		switch (check) {
+			case 'png':
+				return "";
+			case 'gif':
+				return "";
+			case 'jpeg':
+				return "";
+			case 'jpg':
+				return "";
+			case 'JPG':
+				return "";
+			}
+		return "Your file type is not png, gif, jpeg or jpg. Please provide a valid imamge file";
+	}
+
+	document.getElementById('_submit').addEventListener('click', () => {
+		var _submit = document.getElementById('_submit');
+		var _file = document.getElementById('_file');
+		var _progress = document.getElementById('_progress');
+		if (_file.files.length === 0) {
+			return;
+		}
+		var typeError = dataTypeCheck(_file.files[0].name);
+		document.getElementById('response').innerText = typeError;
+
+		var data = new FormData();
+		data.append('SelectedFile', _file.files[0]);
+		data.set('PNG', png);
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("POST", "noWebCam.php");
+		xmlhttp.onreadystatechange = () => {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				try {
+					var resp = JSON.parse(xmlhttp.response);
+					var newImage = document.createElement("img");
+					newImage.setAttribute('src', resp.file);
+					document.body.appendChild(newImage);
+				} catch (e) {
+					var resp = {
+						status: "error",
+						data: "Unknown error occured: " + xmlhttp.responseText
+					};
+				}
+				console.log(resp.status + ': ' + resp.data);
+		//		console.log(xmlhttp.responseText);
+			}
+		};
+		xmlhttp.send(data);
+	});
 
 	document.getElementById('capture').addEventListener('click', () => {
 		context.drawImage(video, 0, 0, 400, 300);
@@ -48,21 +101,3 @@ function myFunction(imgs) {
 	expandImg.parentElement.style.display = "block";
 	png = imgs.src;
 }
-
-// function loadFile(event) {
-// 	var image = document.getElementById('output');
-// 	image.src = URL.createObjectURL(event.target.files[0]);
-// 	var picture = URL.createObjectURL(event.target.files[0]);
-// 	var xmlhttp = new XMLHttpRequest();
-// 		xmlhttp.open("POST", "noWebCam.php");
-// 		xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-// 		xmlhttp.onreadystatechange = () => {
-// 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-// 				// var newImage = document.createElement("img");
-// 				// newImage.setAttribute('src', xmlhttp.responseText);
-// 				// document.body.appendChild(newImage);
-// 				console.log(xmlhttp.responseText);
-// 			}
-// 		}
-// 		xmlhttp.send("imgData=" + picture + "&png=" + png);
-// };
