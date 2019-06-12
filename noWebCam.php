@@ -1,5 +1,6 @@
 <?php
-error_reporting(E_ALL);
+require 'db.php';
+session_start();
 
 // Output JSON
 function outputJSON($msg, $file = '', $status = 'error'){
@@ -12,7 +13,7 @@ function outputJSON($msg, $file = '', $status = 'error'){
 }
 
 $random = bin2hex(random_bytes(10));
-$file = "tmp/".$random.".png";
+$file = "user_images/".$random.".png";
 
 //ADD CHECK FOR FOLDER - IF NO FOLDER - CREATE!!!!!!!!!!!
 
@@ -58,10 +59,20 @@ if (move_uploaded_file($_FILES['SelectedFile']['tmp_name'], $file)) {
 	imagedestroy($src);
 	imagedestroy($dest);
 
+	$query = "INSERT INTO posts (post_url, user_id, date_created) VALUES (:post_url, :user_id, :date_created)";
+	$statement = $pdo->prepare($query);
+	$result = $statement->execute(
+		array(
+			'post_url' => $file,
+			'user_id' => $_SESSION['user_id'],
+			'date_created' => date("Y-m-d H:i:s")
+		)
+	);
+	if ($result) {
+		$_SESSION['message'] = "Picture uploaded!";
+	}	
+
 	// Success!
 	outputJSON('File uploaded successfully to ' . $file, $file, 'success');
-} else {
-	echo "posossi!";
 }
-	
-	?>
+?>

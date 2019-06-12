@@ -1,9 +1,12 @@
 <?php
+require 'db.php';
+session_start();
+
 $random = bin2hex(random_bytes(10));
 $data = $_POST['imgData'];
 $png = $_POST['png'];
 $data = str_replace(' ', '+', $data);
-$file = "tmp/".$random.".png";
+$file = "user_images/".$random.".png";
 $uri = substr($data, strpos($data, ",") + 1);
 file_put_contents($file, base64_decode($uri));
 
@@ -26,6 +29,20 @@ imagecopy($im, $im2, (imagesx($im)/2)-(imagesx($im2)/2), (imagesy($im)/2)-(image
 imagejpeg($im, $file, 90);
 imagedestroy($im);
 imagedestroy($im2);
+
+$query = "INSERT INTO posts (post_url, user_id, date_created) VALUES (:post_url, :user_id, :date_created)";
+$statement = $pdo->prepare($query);
+$result = $statement->execute(
+	array(
+		'post_url' => $file,
+		'user_id' => $_SESSION['user_id'],
+		'date_created' => date("Y-m-d H:i:s")
+	)
+);
+if ($result) {
+	$_SESSION['message'] = "Picture uploaded!";
+}
 echo $file;
+
 
 ?>

@@ -131,6 +131,6 @@ body {
 		  <a href="edit_profile_page.php"><button>Edit Profile</button></a>
           <a href="logout.php"><button>Log Out</button></a>
     </div>
-<script src="js/camera.js"></script>
+	<?php if ($active == 1) { echo '<script src="js/camera.js"></script>';} ?>
 </body>
 </html>

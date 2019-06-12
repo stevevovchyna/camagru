@@ -4,8 +4,6 @@ var png = "";
 	var video = document.getElementById('video');
 	var canvas = document.getElementById('canvas');
 	var context = canvas.getContext('2d');
-	var photo = document.getElementById('photo');
-	var secretik = document.getElementById('secretik');
 	
 	navigator.getMedia = 	navigator.getUserMedia ||
 							navigator.webkitGetUserMedia ||
@@ -40,9 +38,7 @@ var png = "";
 	}
 
 	document.getElementById('_submit').addEventListener('click', () => {
-		var _submit = document.getElementById('_submit');
 		var _file = document.getElementById('_file');
-		var _progress = document.getElementById('_progress');
 		if (_file.files.length === 0) {
 			document.getElementById('response').innerText = "Please choose the file!";
 			return;
@@ -68,7 +64,6 @@ var png = "";
 					};
 				}
 				console.log(resp.status + ': ' + resp.data);
-		//		console.log(xmlhttp.responseText);
 			}
 		};
 		xmlhttp.send(data);
@@ -92,11 +87,21 @@ var png = "";
 	
 })();
 
-function myFunction(imgs) {
+function pngPicker(imgs) {
 	var expandImg = document.getElementById("expandedImg");
 	var imgText = document.getElementById("imgtext");
 	expandImg.src = imgs.src;
 	imgText.innerHTML = imgs.alt;
 	expandImg.parentElement.style.display = "block";
 	png = imgs.src;
+	document.getElementById('capture').disabled = false;
+	document.getElementById('_submit').disabled = false;
 }
+
+function pngPickerCloseButton(imgs) {
+	imgs.parentElement.style.display='none';
+	png = '';
+	document.getElementById('capture').disabled = true;
+	document.getElementById('_submit').disabled = true;
+}
+
