@@ -8,7 +8,6 @@
 $_SESSION['email'] = $_POST['email'];
 $_SESSION['username'] = $_POST['username'];
 
-// Escape all $_POST variables to protect against SQL injections
 $username = $_POST['username'];
 $email = $_POST['email'];
 $password = (password_hash($_POST['password'], PASSWORD_BCRYPT));
@@ -72,7 +71,7 @@ else { // Email doesn't already exist in a database, proceed...
 
         Please click this link to activate your account:
 
-        http://localhost/verify.php?email='.$email.'&hash='.$hash;  
+        http://localhost:8100/verify.php?email='.$email.'&hash='.$hash;  
 
         mail($to, $subject, $message_body);
 

@@ -20,7 +20,9 @@ else { // User exists
     if ( password_verify($_POST['password'], $user[0]['password']) ) {
         $_SESSION['email'] = $user[0]['email'];
         $_SESSION['username'] = $user[0]['username'];
-        $_SESSION['active'] = $user[0]['active'];
+		$_SESSION['active'] = $user[0]['active'];
+		$_SESSION['notifications'] = $user[0]['notifications'];
+		$_SESSION['hash'] = $user[0]['hash'];
         
         // This is how we'll know the user is logged in
         $_SESSION['logged_in'] = true;

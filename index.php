@@ -10,9 +10,8 @@ session_start();
 	<title>Sign-Up/Login Form</title>
 </head>
 <body>
-		<ul class="tab-group">
-			<li class="tab"><a href="signup_page.php">Sign Up</a></li>
-			<li class="tab active"><a href="login_page.php">Log In</a></li>
+	<a href="signup_page.php"><button>Sign Up</button></a>
+	<a href="login_page.php"><button>Log In</button></a>
 		</ul>
 </body>
 </html>

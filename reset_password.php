@@ -12,8 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $new_password = password_hash($_POST['newpassword'], PASSWORD_BCRYPT);
         
         // We get $_POST['email'] from the hidden input field of reset.php form
-        $email = $_POST['email'];
-		$hash = $_POST['hash'];
+        $email = $_SESSION['email'];
+		$hash = $_SESSION['hash'];
 		$query = "UPDATE users SET password = :new_password WHERE email = :email AND hash = :hash";
 		$statement = $pdo->prepare($query);
 		$result = $statement->execute(

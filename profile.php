@@ -3,7 +3,7 @@
 session_start();
 
 // Check if user is logged in using the session variable
-if ( $_SESSION['logged_in'] != 1 ) {
+if ( $_SESSION['logged_in'] != true ) {
   $_SESSION['message'] = "You must log in before viewing your profile page!";
   header("location: error.php");    
 }
@@ -11,14 +11,15 @@ else {
     // Makes it easier to read
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
-    $active = $_SESSION['active'];
+	$active = $_SESSION['active'];
+	$notifications = $_SESSION['notifications'];
 }
 ?>
 <!DOCTYPE html>
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>Welcome <?= $username ?></title>
+  <title>Welcome, <?= $username ?></title>
 
   <style>
 .frame {
@@ -97,7 +98,7 @@ body {
 </head>
 
 <body>
-  <div class="form">
+  <div>
 
           <h1>Welcome</h1>
           
@@ -112,34 +113,6 @@ body {
           }
           ?>
           </p>
-          <div class="frame" style="display:inline-block;">
-          	<div class="container">
-          		<video id="video" width="400" height="300"></video>
-          		<canvas id="canvas" width="400" height="300"></canvas>
-          		<span onclick="this.parentElement.style.display='none';png = ''" class="closebtn">&times;</span>
-          		<img id="expandedImg">
-          		<div id="imgtext"></div>
-          	</div>
-          	<div class="row">
-          		<div class="column">
-          			<img src="images/cartoon.png" alt="Nature" style="width:100%" onclick="myFunction(this);">
-          		</div>
-          		<div class="column">
-          			<img src="images/disnep.png" alt="Snow" style="width:100%" onclick="myFunction(this);">
-          		</div>
-          		<div class="column">
-          			<img src="images/trump.png" alt="Mountains" style="width:100%" onclick="myFunction(this);">
-          		</div>
-          	</div>
-          	<div>
-          		<button id="capture">Take picture</button>
-				<input type='file' id='_file'>
-				<input type='button' id='_submit' value='Upload!'>	
-				<p id="response"></p>
-          	</div>
-          </div>
-		  <?php
-		  ?>
           <?php
           // Keep reminding the user this account is not active, until they activate
           if (!$active){
@@ -148,11 +121,15 @@ body {
               Account is unverified, please confirm your email by clicking
               on the email link!
               </div>';
-          }
+		  }
+		  else {
+			  include 'frame.php';
+		  }
           ?>
-          <h2><?php echo $username; ?></h2>
+          <h2><?= $username ?></h2>
           <p><?= $email ?></p>
-          <a href="logout.php"><button class="button button-block" name="logout"/>Log Out</button></a>
+		  <a href="edit_profile_page.php"><button>Edit Profile</button></a>
+          <a href="logout.php"><button>Log Out</button></a>
     </div>
 <script src="js/camera.js"></script>
 </body>

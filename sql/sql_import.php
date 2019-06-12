@@ -40,6 +40,7 @@ $mysql->query('CREATE TABLE `accounts`,`users`
 `password` VARCHAR(255) NOT NULL,
 `hash` VARCHAR(32) NOT NULL,
 `active` BOOL NOT NULL DEFAULT 0,
+`notifications` BOOL NOT NULL DEFAULT 1,
 PRIMARY KEY (`id`)
 );') or die($mysql->error);
 
