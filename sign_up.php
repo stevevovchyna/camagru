@@ -6,12 +6,10 @@
 
 // Set session variables to be used on profile.php page
 $_SESSION['email'] = $_POST['email'];
-$_SESSION['first_name'] = $_POST['firstname'];
-$_SESSION['last_name'] = $_POST['lastname'];
+$_SESSION['username'] = $_POST['username'];
 
 // Escape all $_POST variables to protect against SQL injections
-$first_name = $_POST['firstname'];
-$last_name = $_POST['lastname'];
+$username = $_POST['username'];
 $email = $_POST['email'];
 $password = (password_hash($_POST['password'], PASSWORD_BCRYPT));
 $hash = md5(rand(0,1000));
@@ -25,29 +23,36 @@ $statement->execute(
 	)
 );
 $count = $statement->rowCount();
+
+$query = "SELECT * FROM users WHERE username = :username";
+$statement = $pdo->prepare($query);
+$statement->execute(
+	array(
+	'username' => $username
+	)
+);
+$count2 = $statement->rowCount();
 // We know user email exists if the rows returned are more than 0
-if ( $count > 0 ) {
+if ( $count > 0 || $count2 > 0) {
     
-    $_SESSION['message'] = 'User with this email already exists!';
+    $_SESSION['message'] = 'User with this email or username already exists!';
     header("location: error.php");
     
 }
 else { // Email doesn't already exist in a database, proceed...
 
     // active is 0 by DEFAULT (no need to include it here)
-	$query = "INSERT INTO users (first_name, last_name, email, password, hash) VALUES (:first_name, :last_name, :email, :password, :hash)";
+	$query = "INSERT INTO users (username, email, password, hash) VALUES (:username, :email, :password, :hash)";
 	$statement = $pdo->prepare($query);
 	$result = $statement->execute(
 		array(
-			'first_name' => $first_name,
-			'last_name' => $last_name,
+			'username' => $username,
 			'email' => $email,
 			'password' => $password,
 			'hash' => $hash
 		)
 	);
-
-    // Add user to the database
+    // Added user to the database
     if ($result){
 
         $_SESSION['active'] = 0; //0 until user activates their account with verify.php
@@ -61,7 +66,7 @@ else { // Email doesn't already exist in a database, proceed...
         $to      = $email;
         $subject = 'Account Verification';
         $message_body = '
-        Hello '.$first_name.',
+        Hello '.$username.',
 
         Thank you for signing up!
 
@@ -69,17 +74,14 @@ else { // Email doesn't already exist in a database, proceed...
 
         http://localhost/verify.php?email='.$email.'&hash='.$hash;  
 
-        mail( $to, $subject, $message_body );
+        mail($to, $subject, $message_body);
 
         header("location: profile.php"); 
 
     }
-
     else {
         $_SESSION['message'] = 'Registration failed!';
         header("location: error.php");
     }
-
 }
-
 ?>

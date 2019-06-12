@@ -17,12 +17,9 @@ if ( $count == 0 ){ // User doesn't exist
 }
 else { // User exists
 	$user = $statement->fetchAll(PDO::FETCH_ASSOC);
-
     if ( password_verify($_POST['password'], $user[0]['password']) ) {
-        
         $_SESSION['email'] = $user[0]['email'];
-        $_SESSION['first_name'] = $user[0]['first_name'];
-        $_SESSION['last_name'] = $user[0]['last_name'];
+        $_SESSION['username'] = $user[0]['username'];
         $_SESSION['active'] = $user[0]['active'];
         
         // This is how we'll know the user is logged in
@@ -31,7 +28,7 @@ else { // User exists
         header("location: profile.php");
     }
     else {
-        $_SESSION['message'] = "You have entered wrong password, try again!";
+        $_SESSION['message'] = "Incorrect password, try again!";
         header("location: error.php");
     }
 }

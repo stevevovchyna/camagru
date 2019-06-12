@@ -1,4 +1,9 @@
 <?php
+
+
+//   VERIFY.PHP
+
+
 /* Verifies registered user email, the link to this page
    is included in the register.php email message 
 */
@@ -21,7 +26,7 @@ if(isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !
 		)
 	);
 	$count = $statement->rowCount();
-    if ($count == 0 )
+    if ($count == 0)
     { 
         $_SESSION['message'] = "Account has already been activated or the URL is invalid!";
         header("location: error.php");

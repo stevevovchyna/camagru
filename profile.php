@@ -9,8 +9,7 @@ if ( $_SESSION['logged_in'] != 1 ) {
 }
 else {
     // Makes it easier to read
-    $first_name = $_SESSION['first_name'];
-    $last_name = $_SESSION['last_name'];
+    $username = $_SESSION['username'];
     $email = $_SESSION['email'];
     $active = $_SESSION['active'];
 }
@@ -19,7 +18,7 @@ else {
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>Welcome <?= $first_name.' '.$last_name ?></title>
+  <title>Welcome <?= $username ?></title>
 
   <style>
 .frame {
@@ -105,11 +104,11 @@ body {
           <p>
           <?php 
           // Display message about account verification link only once
-          if ( isset($_SESSION['message']) )
+          if (isset($_SESSION['message']))
           {
               echo $_SESSION['message'];
               // Don't annoy the user with more messages upon page refresh
-              unset( $_SESSION['message'] );
+              unset($_SESSION['message']);
           }
           ?>
           </p>
@@ -143,7 +142,7 @@ body {
 		  ?>
           <?php
           // Keep reminding the user this account is not active, until they activate
-          if ( !$active ){
+          if (!$active){
               echo
               '<div class="info">
               Account is unverified, please confirm your email by clicking
@@ -151,15 +150,10 @@ body {
               </div>';
           }
           ?>
-          
-          <h2><?php echo $first_name.' '.$last_name; ?></h2>
+          <h2><?php echo $username; ?></h2>
           <p><?= $email ?></p>
-          
           <a href="logout.php"><button class="button button-block" name="logout"/>Log Out</button></a>
-
     </div>
-    
 <script src="js/camera.js"></script>
-
 </body>
 </html>
