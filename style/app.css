@@ -1,3 +1,7 @@
+*:focus {
+    outline: none;
+}
+
 .frame {
 	margin: 0;
 	display: flex;
@@ -18,8 +22,8 @@ body {
 /* The grid: Four equal columns that floats next to each other */
 .column {
   float: left;
-  width: 33%;
-  padding: 10px;
+  width: 25%;
+  padding: 0px;
 }
 
 /* Style the images inside the grid */
@@ -72,11 +76,34 @@ body {
 
 .feed-container {
 	margin: 3% 25%;
-	border: 3px solid pink;
-	display: block;
 	overflow: auto;
 }
 
 .feed-container img {
-	margin: 5px 5% 5px 5%;
+	display: block;
+	width: 90%;
+	margin: 1rem auto 0.4rem auto;
 }
+
+.like-button {
+	display: block;
+	width: 5rem;
+	height: 3rem;
+	margin: 0 auto 0 5%;
+	background-color: rgba(246, 100, 64, 0.775);
+}
+
+.comment-button {
+	display: block;
+	width: 90%;
+	margin: 0 auto 0 auto;
+	background-color: lightskyblue;
+}
+
+textarea {
+	display: block;
+	resize: none;
+	width: 90%;
+	margin: 0.4rem auto 0.2rem auto;
+}
+

@@ -30,13 +30,14 @@ imagejpeg($im, $file, 90);
 imagedestroy($im);
 imagedestroy($im2);
 
-$query = "INSERT INTO posts (post_url, user_id, date_created) VALUES (:post_url, :user_id, :date_created)";
+$query = "INSERT INTO posts (post_url, user_id, date_created, username) VALUES (:post_url, :user_id, :date_created, :username)";
 $statement = $pdo->prepare($query);
 $result = $statement->execute(
 	array(
 		'post_url' => $file,
 		'user_id' => $_SESSION['user_id'],
-		'date_created' => date("Y-m-d H:i:s")
+		'date_created' => date("Y-m-d H:i:s"),
+		'username' => $_SESSION['username']
 	)
 );
 if ($result) {

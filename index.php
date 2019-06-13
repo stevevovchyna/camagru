@@ -12,7 +12,7 @@ session_start();
 <body>
 	<a href="signup_page.php"><button>Sign Up</button></a>
 	<a href="login_page.php"><button>Log In</button></a>
-	<a href="feed.php"><button>feed</button></a>
+	<a href="feed.php"><button>Feed</button></a>
 		</ul>
 </body>
 </html>

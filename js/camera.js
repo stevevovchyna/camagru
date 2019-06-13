@@ -19,32 +19,12 @@ var png = "";
 		console.log(err.code);
 	});
 
-	function dataTypeCheck(name) {
-		var check = name;
-		check = check.slice(check.indexOf(".") + 1);
-		switch (check) {
-			case 'png':
-				return "";
-			case 'gif':
-				return "";
-			case 'jpeg':
-				return "";
-			case 'jpg':
-				return "";
-			case 'JPG':
-				return "";
-			}
-		return "Your file type is not png, gif, jpeg or jpg. Please provide a valid image file";
-	}
-
 	document.getElementById('_submit').addEventListener('click', () => {
 		var _file = document.getElementById('_file');
 		if (_file.files.length === 0) {
 			document.getElementById('response').innerText = "Please choose the file!";
 			return;
 		}
-		var typeError = dataTypeCheck(_file.files[0].name);
-		document.getElementById('response').innerText = typeError;
 		var data = new FormData();
 		data.append('SelectedFile', _file.files[0]);
 		data.set('PNG', png);
@@ -70,7 +50,7 @@ var png = "";
 	});
 
 	document.getElementById('capture').addEventListener('click', () => {
-		context.drawImage(video, 0, 0, 400, 300);
+		context.drawImage(video, 0, 0, 500, 375);
 		picture = canvas.toDataURL("image/png");
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("POST", "picsmerge.php");
@@ -91,7 +71,6 @@ function pngPicker(imgs) {
 	var expandImg = document.getElementById("expandedImg");
 	var imgText = document.getElementById("imgtext");
 	expandImg.src = imgs.src;
-	imgText.innerHTML = imgs.alt;
 	expandImg.parentElement.style.display = "block";
 	png = imgs.src;
 	document.getElementById('capture').disabled = false;

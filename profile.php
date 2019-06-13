@@ -22,6 +22,7 @@ if ( $_SESSION['logged_in'] != true ) {
 <body>
 	<a href="edit_profile_page.php"><button>Edit Profile</button></a>
 	<a href="logout.php"><button>Log Out</button></a>
+	<a href="feed.php"><button>Feed</button></a>
 	<p>
 	<?php 
 	// Display message about account verification link only once

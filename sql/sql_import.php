@@ -38,6 +38,14 @@ $mysql->query('CREATE TABLE `posts`(
 	FOREIGN KEY (`user_id`) REFERENCES users(`user_id`)
 	);') or die($mysql->error);
 
+$mysql->query('CREATE TABLE `likes` (
+	`like_id` int(20) NOT NULL AUTO_INCREMENT,
+	`user_id` int(20) NOT NULL,
+	`post_id` int(20) NOT NULL,
+	PRIMARY KEY (`like_id`),
+	FOREIGN KEY (`user_id`) REFERENCES users(`user_id`),
+	FOREIGN KEY (`post_id`) REFERENCES posts(`post_id`)
+);') or die($mysql->error);
 ?>
 
 

@@ -15,8 +15,6 @@ function outputJSON($msg, $file = '', $status = 'error'){
 $random = bin2hex(random_bytes(10));
 $file = "user_images/".$random.".png";
 
-//ADD CHECK FOR FOLDER - IF NO FOLDER - CREATE!!!!!!!!!!!
-
 // Check for errors
 if($_FILES['SelectedFile']['error'] > 0){
     outputJSON('An error ocurred when uploading.');
@@ -26,8 +24,16 @@ if(!getimagesize($_FILES['SelectedFile']['tmp_name'])){
     outputJSON('Please ensure you are uploading an image.');
 }
 
+if ($_FILES['SelectedFile']['type'] !== 'image/jpeg' &&
+	$_FILES['SelectedFile']['type'] !== 'image/png' &&
+	$_FILES['SelectedFile']['type'] !== 'image/jpg' &&
+	$_FILES['SelectedFile']['type'] !== 'image/JPG' &&
+	$_FILES['SelectedFile']['type'] !== 'image/gif') {
+		outputJSON('Please ensure you are uploading png, jpg, jpeg or gif image file.');
+}
+
 // Check filesize
-if($_FILES['SelectedFile']['size'] > 500000){
+if($_FILES['SelectedFile']['size'] > 1000000){
     outputJSON('File uploaded exceeds maximum upload size.');
 }
 
@@ -51,21 +57,23 @@ if (move_uploaded_file($_FILES['SelectedFile']['tmp_name'], $file)) {
 		$dest = imagecreatefrompng($dest_image);
 	}
 	imagesavealpha($dest, true);
-	header('Content-Type: image/png');
-	$back = imagecreatetruecolor(400, 300);
-	imagecopy($back, $dest, 0,0,0,0,400,300);
-	imagecopy($back, $src, 0,0,0,0,400,300);
+	// header('Content-Type: image/png');
+	$back = imagecreatetruecolor(imagesx($src), imagesy($src));
+	imagecopyresized($back, $dest, 0, 0, 0, 0, imagesx($src), imagesy($src), imagesx($dest), imagesy($dest));
+	imagecopy($back, $src, 0, 0, 0, 0, imagesx($src), imagesy($src));
 	imagepng($back, $file);
 	imagedestroy($src);
 	imagedestroy($dest);
+	imagedestroy($back);
 
-	$query = "INSERT INTO posts (post_url, user_id, date_created) VALUES (:post_url, :user_id, :date_created)";
+	$query = "INSERT INTO posts (post_url, user_id, date_created, username) VALUES (:post_url, :user_id, :date_created, :username)";
 	$statement = $pdo->prepare($query);
 	$result = $statement->execute(
 		array(
 			'post_url' => $file,
 			'user_id' => $_SESSION['user_id'],
-			'date_created' => date("Y-m-d H:i:s")
+			'date_created' => date("Y-m-d H:i:s"),
+			'username' => $_SESSION['username']
 		)
 	);
 	if ($result) {
