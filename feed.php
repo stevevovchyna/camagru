@@ -54,6 +54,8 @@ session_start();
 				echo "<button ".$disabled." name=\"".$postik['post_id']."\" onclick=\"like(this)\" class=\"like-button\"><span>".$count."</span> likes</button>";
 				echo "<textarea rows=\"3\"></textarea>";
 				echo "<button class=\"comment-button\">Submit Comment</button>";
+			} else {
+				echo "<button class=\"like-button\"><span>".$count."</span> likes</button>";
 			}			
 		}
 		?>
