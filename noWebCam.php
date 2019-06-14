@@ -1,6 +1,7 @@
 <?php
 require 'db.php';
 session_start();
+date_default_timezone_set("Europe/Kiev");
 
 // Output JSON
 function outputJSON($msg, $file = '', $status = 'error'){
@@ -66,14 +67,13 @@ if (move_uploaded_file($_FILES['SelectedFile']['tmp_name'], $file)) {
 	imagedestroy($dest);
 	imagedestroy($back);
 
-	$query = "INSERT INTO posts (post_url, user_id, date_created, username) VALUES (:post_url, :user_id, :date_created, :username)";
+	$query = "INSERT INTO posts (post_url, user_id, date_created) VALUES (:post_url, :user_id, :date_created)";
 	$statement = $pdo->prepare($query);
 	$result = $statement->execute(
 		array(
 			'post_url' => $file,
 			'user_id' => $_SESSION['user_id'],
-			'date_created' => date("Y-m-d H:i:s"),
-			'username' => $_SESSION['username']
+			'date_created' => date("Y-m-d H:i:s")
 		)
 	);
 	if ($result) {

@@ -1,6 +1,7 @@
 <?php
 require 'db.php';
 session_start();
+date_default_timezone_set("Europe/Kiev");
 
 $random = bin2hex(random_bytes(10));
 $data = $_POST['imgData'];
@@ -30,14 +31,13 @@ imagejpeg($im, $file, 90);
 imagedestroy($im);
 imagedestroy($im2);
 
-$query = "INSERT INTO posts (post_url, user_id, date_created, username) VALUES (:post_url, :user_id, :date_created, :username)";
+$query = "INSERT INTO posts (post_url, user_id, date_created) VALUES (:post_url, :user_id, :date_created)";
 $statement = $pdo->prepare($query);
 $result = $statement->execute(
 	array(
 		'post_url' => $file,
 		'user_id' => $_SESSION['user_id'],
-		'date_created' => date("Y-m-d H:i:s"),
-		'username' => $_SESSION['username']
+		'date_created' => date("Y-m-d H:i:s")
 	)
 );
 if ($result) {

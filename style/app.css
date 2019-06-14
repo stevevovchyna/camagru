@@ -107,3 +107,10 @@ textarea {
 	margin: 0.4rem auto 0.2rem auto;
 }
 
+.author {
+	margin-left: 5%;
+}
+
+.comment {
+	margin: 0.5rem 5% 0.5rem 5%;
+}

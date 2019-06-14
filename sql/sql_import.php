@@ -46,6 +46,19 @@ $mysql->query('CREATE TABLE `likes` (
 	FOREIGN KEY (`user_id`) REFERENCES users(`user_id`),
 	FOREIGN KEY (`post_id`) REFERENCES posts(`post_id`)
 );') or die($mysql->error);
+
+
+$mysql->query('CREATE TABLE comments(
+	`comment_id` INT(20) NOT NULL AUTO_INCREMENT,
+	`post_id` INT(20) NOT NULL,
+	`user_id` INT(20) NOT NULL,
+	`content` TEXT NOT NULL,
+	`date_created` DATETIME NOT NULL,
+	PRIMARY KEY (`comment_id`),
+	FOREIGN KEY (`post_id`) REFERENCES posts(`post_id`),
+	FOREIGN KEY (`user_id`) REFERENCES users(`user_id`)
+);') or die($mysql->error);
+
 ?>
 
 
