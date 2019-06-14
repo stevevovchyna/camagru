@@ -1,5 +1,5 @@
 <?php 
-require 'db.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/config/database.php';
 session_start();
 if ( $_SESSION['logged_in'] != true ) {
 	$_SESSION['message'] = "You must log in first";

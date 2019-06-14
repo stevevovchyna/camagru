@@ -1,5 +1,5 @@
 <?php
-require 'db.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/config/database.php';
 session_start();
 ?>
 <!DOCTYPE html>
