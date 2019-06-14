@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/config/database.php';
 session_start();
 date_default_timezone_set("Europe/Kiev");
 
