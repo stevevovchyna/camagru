@@ -7,6 +7,9 @@ session_start();
 <html>
 <head>
 	<title>Login</title>
+	<link rel="stylesheet" href="style/login-register.css">
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-dark.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <?php 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
@@ -17,12 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 }
 ?>
 <body>
-	<div>
-		<a href="index.php">Home</a>
-	</div>
+	<div class="login-register">
 	<h1>Log In</h1>
-	<div>
-		<form action="login_page.php" method="post" autocomplete="off">
+		<form action="login_page.php" method="post" autocomplete="off" class="">
 			<div>
 				<label>
 					Email Address
@@ -36,7 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 				<input type="password" value="111" required autocomplete="off" name="password" />
 			</div>
 			<p><a href="forgot.php">Forgot Password?</a></p>
-			<button name="login" />Log In</button>
+			<button class="inverse shadowed" name="login" />Log In</button>
+			<button><a href="index.php">Home</a></button>
 		</form>
 	</div>
 </body>

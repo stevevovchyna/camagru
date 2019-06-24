@@ -18,6 +18,22 @@ var png = "";
 	}, function (err){
 		console.log(err.code);
 	});
+	
+	var video1 = document.getElementById('video1');
+	
+	navigator.getMedia = 	navigator.getUserMedia ||
+							navigator.webkitGetUserMedia ||
+							navigator.mozGetUserMedia ||
+							navigator.msGetUserMedia;
+	navigator.getMedia({
+		video: true,
+		audio: false
+	}, function (stream){
+		video1.srcObject = stream;
+		video1.play();
+	}, function (err){
+		console.log(err.code);
+	});
 
 	document.getElementById('_submit').addEventListener('click', () => {
 		var _file = document.getElementById('_file');
@@ -36,7 +52,8 @@ var png = "";
 					var resp = JSON.parse(xmlhttp.response);
 					var newImage = document.createElement("img");
 					newImage.setAttribute('src', resp.file);
-					document.body.appendChild(newImage);
+					var thumb = document.getElementById('thumb');
+					thumb.append(newImage);
 				} catch (e) {
 					var resp = {
 						status: "error",
@@ -59,7 +76,8 @@ var png = "";
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 				var newImage = document.createElement("img");
 				newImage.setAttribute('src', xmlhttp.responseText);
-				document.body.appendChild(newImage);
+				var thumb = document.getElementById('thumb');
+				thumb.append(newImage);
 			}
 		}
 		xmlhttp.send("imgData=" + picture + "&png=" + png);
@@ -69,12 +87,12 @@ var png = "";
 
 function pngPicker(imgs) {
 	var expandImg = document.getElementById("expandedImg");
-	var imgText = document.getElementById("imgtext");
 	expandImg.src = imgs.src;
-	expandImg.parentElement.style.display = "block";
+	expandImg.parentElement.style.display = "flex";
 	png = imgs.src;
 	document.getElementById('capture').disabled = false;
 	document.getElementById('_submit').disabled = false;
+	document.getElementById('video1').style.display = "none";
 }
 
 function pngPickerCloseButton(imgs) {
@@ -82,5 +100,6 @@ function pngPickerCloseButton(imgs) {
 	png = '';
 	document.getElementById('capture').disabled = true;
 	document.getElementById('_submit').disabled = true;
+	document.getElementById('video1').style.display = "flex";
 }
 

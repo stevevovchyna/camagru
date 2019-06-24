@@ -1,0 +1,102 @@
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+*:focus {
+    outline: none;
+}
+
+.frame {
+	margin: 5% 5% 5% 5%;
+	display: flex;
+}
+
+#canvas {
+	display: none;
+}
+
+/* The grid: Four equal columns that floats next to each other */
+/* PNGs!!! */
+.column {
+  /* float: left; */
+  width: 25%;
+  padding: 0px;
+  display: inline-block;
+
+}
+
+/* Style the images inside the grid */
+.column img {
+  opacity: 0.7; 
+  cursor: pointer; 
+}
+
+.column img:hover {
+  opacity: 0.9;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.row {
+	overflow: auto;
+	white-space: nowrap;
+	margin: 3% 1% 0% 1%;
+}
+
+/* The expanding image container */
+.container {
+  position: relative;
+  display: none;
+}
+
+.video1, .container {
+	margin: 0% auto 0% 30%;
+}
+
+/* Closable button inside the expanded image */
+.closebtn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+  color: black;
+}
+
+#video {
+	position: relative;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+#expandedImg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 3;
+}
+
+#thumb {
+	padding: 0%;
+	width: 30%;
+	margin: auto;
+	overflow-y: scroll;
+	max-height: 80vh;
+}
+
+#thumb img {
+	width: 100%;
+}
+
+#picture-png-buttons {
+	display: inline-block;
+	margin-right: 0%;
+}

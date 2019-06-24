@@ -1,0 +1,21 @@
+body{
+	background: black;
+}
+
+#back {
+	height: 100vh;
+	display: flex;
+	background-image: url(../images/wallpaper.jpg);
+	background-size: cover	;
+	background-repeat: no-repeat;
+	display: block;
+}
+header {
+	width: 100%;
+}
+
+#cama{
+	text-align: center;
+	margin-top: 20%;
+	font-size: 5rem;
+}
