@@ -19,7 +19,7 @@ if ( $_SESSION['logged_in'] != true ) {
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="style/app.css">
 	<link rel="stylesheet" href="style/profile.css">
-	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-dark.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Welcome, <?= $username ?></title>
 </head>
@@ -27,6 +27,7 @@ if ( $_SESSION['logged_in'] != true ) {
 	<a href="edit_profile_page.php"><button>Edit Profile</button></a>
 	<a href="logout.php"><button>Log Out</button></a>
 	<a href="feed.php"><button>Feed</button></a>
+	<a href="index.php">Home</a>
 	<p>
 	<?php 
 	// Display message about account verification link only once

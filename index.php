@@ -14,11 +14,26 @@ session_start();
 <body>
 	<div id="back">
 		<header class="sticky">
-			<a href="signup_page.php"><button>Sign Up</button></a>
-			<a href="login_page.php"><button>Log In</button></a>
-			<a href="feed.php"><button>Feed</button></a>
+			<?php
+				if ( $_SESSION['logged_in'] === true ) {
+					echo "<a href=\"feed.php\"><button>Feed</button></a>";
+					echo "<a href=\"profile.php\"><button>My Profile</button></a>";
+					echo "<a href=\"logout.php\"><button>Log Out</button></a>";
+				} else {
+					echo "<a href=\"signup_page.php\"><button>Sign Up</button></a>";
+					echo "<a href=\"login_page.php\"><button>Log In</button></a>";
+					echo "<a href=\"feed.php\"><button>Feed</button></a>";
+				}
+			?>
 		</header>
-		<p id="cama">Camagru</p>
+		
+		<?php
+				if ( $_SESSION['logged_in'] === true ) {
+					echo "<p id=\"cama\">Welcome to the Camagru, ".$_SESSION['username']."</p>";
+				} else {
+					echo "<p id=\"cama\">Camagru</p>";
+				}
+		?>
 	</div>
 </body>
 </html>
