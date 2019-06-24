@@ -7,10 +7,34 @@ session_start();
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="style/app.css">
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-dark.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Camagru</title>
 </head>
 <body>
-	<a href="index.php"><button>Home</button></a>
+	<div id="back">
+		<header class="sticky">
+			<?php
+				if ( $_SESSION['logged_in'] === true ) {
+					echo "<a href=\"feed.php\"><button>Feed</button></a>";
+					echo "<a href=\"profile.php\"><button>My Profile</button></a>";
+					echo "<a href=\"logout.php\"><button>Log Out</button></a>";
+				} else {
+					echo "<a href=\"signup_page.php\"><button>Sign Up</button></a>";
+					echo "<a href=\"login_page.php\"><button>Log In</button></a>";
+					echo "<a href=\"feed.php\"><button>Feed</button></a>";
+				}
+			?>
+		</header>
+		
+		<?php
+				if ( $_SESSION['logged_in'] === true ) {
+					echo "<p id=\"cama\">Welcome to the Camagru, ".$_SESSION['username']."</p>";
+				} else {
+					echo "<p id=\"cama\">Camagru</p>";
+				}
+		?>
+	</div>
 	<?php 
 		if ($_SESSION['logged_in'] == true) {
 			echo "<a href=\"profile.php\"><button>My Profile</button></a>"; 
