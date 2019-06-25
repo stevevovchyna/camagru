@@ -8,7 +8,7 @@ body {
 }
 
 .frame {
-	margin: 5% 5% 5% 5% !important;
+	margin: 5% 5% 0% 5% !important;
 	display: flex;
 }
 
@@ -88,7 +88,6 @@ body {
 #thumb {
 	padding: 0% !important;
 	width: 30%;
-	margin: auto !important;
 	overflow-y: scroll;
 	height: 80vh;
 }
@@ -109,7 +108,7 @@ body {
   
   /* Track */
   ::-webkit-scrollbar-track {
-	background: #f1f1f1; 
+	background: #050505; 
   }
    
   /* Handle */

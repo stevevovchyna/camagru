@@ -24,3 +24,7 @@ header.sticky:hover {
 	margin-top: 20%;
 	font-size: 5rem;
 }
+
+.paginator {
+	padding: 0 !important;
+}

@@ -53,10 +53,14 @@ function submitComment(post) {
 			
 			var comment = document.createElement("div");
 			comment.id = resp.comment_id;
+			comment.setAttribute('onclick', 'showDelButton(this)');
 			comment.innerText = resp.content + " by " + resp.username;
 			
 			var delButton = document.createElement('button');
 			delButton.id = resp.comment_id;
+			delButton.classList.add('hidden');
+			delButton.classList.add('small');
+			delButton.classList.add('delete-button' + resp.comment_id);
 			delButton.innerText = "Delete";
 			delButton.setAttribute('onclick', 'deleteComment(this)');
 			

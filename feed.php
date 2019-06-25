@@ -13,29 +13,47 @@ session_start();
 	<title>Camagru</title>
 </head>
 <body>
-	<div>
-		<header class="sticky">
-			<?php
-				if ( $_SESSION['logged_in'] === true ) {
-					echo "<button> Welcome, ".$_SESSION['username']."</button>";
-					echo "<a href=\"feed.php\"><button>Feed</button></a>";
-					echo "<a href=\"profile.php\"><button>My Profile</button></a>";
-					echo "<a href=\"logout.php\"><button>Log Out</button></a>";
-				} else {
-					echo "<a href=\"signup_page.php\"><button>Sign Up</button></a>";
-					echo "<a href=\"login_page.php\"><button>Log In</button></a>";
-					echo "<a href=\"feed.php\"><button>Feed</button></a>";
-				}
-			?>
-		</header>
-	</div>
+	<header class="sticky">
+		<?php
+			if ( $_SESSION['logged_in'] === true ) {
+				echo "<button> Welcome, ".$_SESSION['username']."</button>";
+				echo "<a href=\"feed.php\"><button>Feed</button></a>";
+				echo "<a href=\"profile.php\"><button>My Profile</button></a>";
+				echo "<a href=\"logout.php\"><button>Log Out</button></a>";
+			} else {
+				echo "<a href=\"signup_page.php\"><button>Sign Up</button></a>";
+				echo "<a href=\"login_page.php\"><button>Log In</button></a>";
+				echo "<a href=\"feed.php\"><button>Feed</button></a>";
+			}
+		?>
+	</header>
 	<div class="feed-container">
-		<?php 
-		
-		$query = "SELECT * FROM posts INNER JOIN users ON posts.user_id = users.user_id ORDER BY posts . date_created DESC";
+		<?php
+
+		$no_of_records_per_page = 3;
+		$query = "SELECT * FROM posts";
 		$statement = $pdo->prepare($query);
 		$statement->execute();		
 		$post = $statement->fetchAll(PDO::FETCH_ASSOC);
+		$row_count = $statement->rowCount();
+		$total_pages = ceil($row_count / $no_of_records_per_page);
+		
+		if (isset($_GET['pageno'])) {
+			$pageno = $_GET['pageno'];
+			if ($pageno <= 0)
+				$pageno = 1;
+			else if ($pageno > $total_pages)
+				$pageno = $total_pages;
+		} else {
+			$pageno = 1;
+		}
+		$offset = ($pageno - 1) * $no_of_records_per_page;
+
+		$query = "SELECT * FROM posts INNER JOIN users ON posts.user_id = users.user_id ORDER BY posts . date_created DESC LIMIT ".$offset. ", ".$no_of_records_per_page;
+		$statement = $pdo->prepare($query);
+		$statement->execute();		
+		$post = $statement->fetchAll(PDO::FETCH_ASSOC);
+		$row_count = $statement->rowCount();
 		foreach ($post as $postik) {
 			$post_id = $postik['post_id'];
 			// CHECKING THE NUMBER OF LIKES
@@ -47,6 +65,7 @@ session_start();
 				)
 			);
 			$count = $statement->rowCount();
+
 
 			// CHECKING IF THERE'S A LIKE FROM THE CURRENT USER ALREADY
 
@@ -63,7 +82,7 @@ session_start();
 			$likeword = $count === 1 ? " like" : " likes";
 
 			//POST LABEL
-
+			echo "<div class=\"post\">";
 			echo "<p class=\"author\">Post by ".$postik['username']." created on ".$postik['date_created']."</p>";
 			echo "<img src=\"".$postik['post_url']."\">";
 
@@ -93,9 +112,18 @@ session_start();
 				echo '</div>';
 			} else {
 				echo "<button class=\"like-button\"><span>".$count."</span> likes</button>";
-			}			
+			}
+			echo "</div>";		
 		}
 		?>
+		<form action="feed.php" method="get">
+			<div class="row paginator">
+				<button class="col-sm" <?php if($pageno <= 1) { echo "disabled";} ?> name="pageno" value="1">Start</button>
+				<button class="col-sm" <?php if($pageno <= 1) {echo "disabled";} ?> name="pageno" value="<?php echo $pageno - 1 ?>">Previous</button>
+				<button class="col-sm" <?php if($pageno >= $total_pages) {echo "disabled";} ?> name="pageno" value="<?php echo $pageno + 1 ?>">Next</button>
+				<button class="col-sm" <?php if($pageno >= $total_pages) {echo "disabled";} ?> name="pageno" value="<?php echo $total_pages; ?>">End</button>
+			</div>
+		</form>
 	</div>
 	<script src="js/feed.js"></script>
 </body>
