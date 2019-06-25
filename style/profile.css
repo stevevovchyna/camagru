@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  margin: 0 !important;
   font-family: Arial;
 }
 
@@ -8,7 +8,7 @@ body {
 }
 
 .frame {
-	margin: 5% 5% 5% 5%;
+	margin: 5% 5% 5% 5% !important;
 	display: flex;
 }
 
@@ -21,8 +21,8 @@ body {
 .column {
   /* float: left; */
   width: 25%;
-  padding: 0px;
-  display: inline-block;
+  padding: 0px !important;
+  display: inline-block !important;
 
 }
 
@@ -39,24 +39,26 @@ body {
 /* Clear floats after the columns */
 .row:after {
   content: "";
-  display: table;
+  display: table !important;
   clear: both;
 }
 
 .row {
-	overflow: auto;
+	display: block !important;
+	overflow: auto !important;
 	white-space: nowrap;
-	margin: 3% 1% 0% 1%;
+	margin: 3% 1% 0% 1% !important;
 }
 
 /* The expanding image container */
 .container {
   position: relative;
   display: none;
+  padding: 0 !important;
 }
 
 .video1, .container {
-	margin: 0% auto 0% 30%;
+	margin: 0% auto 0% 30% !important;
 }
 
 /* Closable button inside the expanded image */
@@ -67,7 +69,6 @@ body {
   color: white;
   font-size: 35px;
   cursor: pointer;
-  color: black;
 }
 
 #video {
@@ -85,11 +86,11 @@ body {
 }
 
 #thumb {
-	padding: 0%;
+	padding: 0% !important;
 	width: 30%;
-	margin: auto;
+	margin: auto !important;
 	overflow-y: scroll;
-	max-height: 80vh;
+	height: 80vh;
 }
 
 #thumb img {
@@ -97,6 +98,26 @@ body {
 }
 
 #picture-png-buttons {
-	display: inline-block;
-	margin-right: 0%;
+	display: inline-block !important;
+	margin-right: 0% !important;
 }
+
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+	background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+	background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+	background: #555; 
+  }

@@ -89,6 +89,7 @@ function pngPicker(imgs) {
 	var expandImg = document.getElementById("expandedImg");
 	expandImg.src = imgs.src;
 	expandImg.parentElement.style.display = "flex";
+	document.getElementById('video1').style.display = "flex";
 	png = imgs.src;
 	document.getElementById('capture').disabled = false;
 	document.getElementById('_submit').disabled = false;

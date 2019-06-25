@@ -6,7 +6,8 @@ function like(like) {
 	xmlhttp.onreadystatechange = () => {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			like.setAttribute('onclick', 'unlike(this)');
-			like.querySelector('span').innerText = xmlhttp.responseText;
+			var word = xmlhttp.responseText === "1" ? " like" : " likes";
+			like.querySelector('span').innerText = xmlhttp.responseText + word;
 		}
 	}
 	xmlhttp.send("postID=" + postID);
@@ -19,7 +20,8 @@ function unlike(like) {
 	xmlhttp.onreadystatechange = () => {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			like.setAttribute('onclick', 'like(this)');
-			like.querySelector('span').innerText = xmlhttp.responseText;
+			var word = xmlhttp.responseText === "1" ? " like" : " likes";
+			like.querySelector('span').innerText = xmlhttp.responseText + word;
 		}
 	}
 	xmlhttp.send("postID=" + postID);
@@ -79,4 +81,9 @@ function deleteComment(but) {
 		}
 	}
 	xmlhttp.send("commentID=" + commentID);
+}
+
+function showDelButton(el) {
+	var id = ".delete-button" + el.id;
+	document.querySelector(id).classList.toggle('hidden');
 }
