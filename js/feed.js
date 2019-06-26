@@ -67,7 +67,6 @@ function submitComment(post) {
 			document.getElementById(id).appendChild(commentBlock);
 			document.getElementById(commentBlockID).appendChild(comment);			
 			document.getElementById(commentBlockID).appendChild(delButton);
-			console.log(resp.testik);
 		}
 	}
 	xmlhttp.send("postID=" + postID + "&content=" + content);
