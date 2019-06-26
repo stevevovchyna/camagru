@@ -1,30 +1,27 @@
+body {
+	margin: 0% !important;
+	padding: 0% !important;
+}
 #back {
 	height: 100vh;
-	display: flex;
 	background-image: url(../images/wallpaper.jpg);
-	background-size: cover	;
+	background-size: cover;
 	background-repeat: no-repeat;
 	display: block;
-}
-header {
-	width: 100%;
-}
-header.sticky {
-	opacity: 0.5;
-	border-bottom: 0px solid black;
-	transition: opacity 1s;
-}
-header.sticky:hover {
-	opacity: 1;
-	transition: opacity 1s;
 }
 
 #cama{
 	text-align: center;
-	margin-top: 20%;
+	margin-top: 15%;
 	font-size: 5rem;
 }
 
-.paginator {
-	padding: 0 !important;
+#logout {
+	text-align: center;
+	font-size: 5rem;
+	margin-top: 15%;
+}
+
+#home-button {
+	text-align: center;
 }

@@ -28,7 +28,7 @@ else { // User exists
         // This is how we'll know the user is logged in
         $_SESSION['logged_in'] = true;
 
-        header("location: profile.php");
+        header("location: index.php");
     }
     else {
         $_SESSION['message'] = "Incorrect password, try again!";

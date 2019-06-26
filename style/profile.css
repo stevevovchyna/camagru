@@ -16,7 +16,6 @@ body {
 	display: none;
 }
 
-/* The grid: Four equal columns that floats next to each other */
 /* PNGs!!! */
 .column {
   /* float: left; */
@@ -96,27 +95,31 @@ body {
 	width: 100%;
 }
 
+#thumb button {
+	width: 100%;
+	margin: 0 0 1rem 0 !important;
+}
+
 #picture-png-buttons {
 	display: inline-block !important;
 	margin-right: 0% !important;
 }
 
-/* width */
 ::-webkit-scrollbar {
-	width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
+	width: 5px;
+}
+ 
+ /* Track */
+::-webkit-scrollbar-track {
 	background: #050505; 
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-	background: #888; 
-  }
+}
   
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
+ /* Handle */
+::-webkit-scrollbar-thumb {
+	background: rgb(46, 44, 44); 
+}
+ 
+ /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
 	background: #555; 
-  }
+}

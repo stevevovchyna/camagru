@@ -1,6 +1,9 @@
 <?php
 /* Displays all error messages */
 session_start();
+if (isset($_SESSION['previous'])) {
+	unset($_SESSION['alert']);
+}
 ?>
 <!DOCTYPE html>
 <html>

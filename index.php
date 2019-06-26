@@ -2,11 +2,15 @@
 /* Main page with two forms: sign up and log in */
 require $_SERVER['DOCUMENT_ROOT'] . '/config/database.php';
 session_start();
+if (isset($_SESSION['previous'])) {
+	unset($_SESSION['alert']);
+}
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<link rel="stylesheet" href="style/index.css">
+	<link rel="stylesheet" href="style/header-footer.css">
 	<link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-dark.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Welcome to Camagru!</title>
@@ -18,6 +22,7 @@ session_start();
 				if ( $_SESSION['logged_in'] === true ) {
 					echo "<a href=\"feed.php\"><button>Feed</button></a>";
 					echo "<a href=\"profile.php\"><button>My Profile</button></a>";
+					echo "<a href=\"edit_profile_page.php\"><button>Edit Profile</button></a>";
 					echo "<a href=\"logout.php\"><button>Log Out</button></a>";
 				} else {
 					echo "<a href=\"signup_page.php\"><button>Sign Up</button></a>";

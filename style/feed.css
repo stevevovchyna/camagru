@@ -1,0 +1,82 @@
+*:focus {
+    outline: none;
+}
+
+* {
+	box-sizing: border-box;
+  }
+  
+body {
+	margin: 0 !important;
+}
+  
+.feed-container {
+	margin: 3% 25%;
+	overflow: auto;
+}
+  
+.feed-container img {
+	display: block;
+	width: 90%;
+	margin: 1rem auto 0.4rem auto;
+}
+  
+.like-button {
+	  display: block;
+	  width: 5rem;
+	  height: 3rem;
+	  margin: 0 auto 0 5%;
+	  background-color: rgba(246, 100, 64, 0.775);
+}
+  
+.comment-button {
+	  display: block !important;
+	  width: 90%;
+	  margin: 0 auto 0 auto !important;
+	  background-color: lightskyblue;
+}
+  
+textarea {
+	  display: block;
+	  resize: none;
+	  width: 90%;
+	  margin: 0.4rem auto 0.2rem auto !important;
+}
+  
+.author {
+	  margin-left: 5%;
+	  font-weight: 100;
+}
+  
+.post {
+	  margin-bottom: 4%;
+}
+  
+.paginator {
+	  border: 0px solid black;
+	  padding: 0 !important;
+	  margin: 0% !important;
+}
+  
+.comment {
+	  margin: 0.5rem 5% 0.5rem 5%;
+}
+
+::-webkit-scrollbar {
+	width: 5px;
+}
+ 
+ /* Track */
+::-webkit-scrollbar-track {
+	background: #050505; 
+}
+  
+ /* Handle */
+::-webkit-scrollbar-thumb {
+	background: rgb(46, 44, 44); 
+}
+ 
+ /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #555; 
+}

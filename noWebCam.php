@@ -4,12 +4,13 @@ session_start();
 date_default_timezone_set("Europe/Kiev");
 
 // Output JSON
-function outputJSON($msg, $file = '', $status = 'error'){
+function outputJSON($msg, $file = '', $post_id = '', $status = 'error'){
     header('Content-Type: application/json');
     die(json_encode(array(
 		'data' => $msg,
 		'file' => $file,
-        'status' => $status
+		'status' => $status,
+		'post_id' => $post_id
     )));
 }
 
@@ -79,8 +80,11 @@ if (move_uploaded_file($_FILES['SelectedFile']['tmp_name'], $file)) {
 	if ($result) {
 		$_SESSION['message'] = "Picture uploaded!";
 	}	
-
+	$query = "SELECT LAST_INSERT_ID()";
+	$statement = $pdo->prepare($query);
+	$statement->execute();
+	$arr = $statement->fetchAll(PDO::FETCH_ASSOC);
 	// Success!
-	outputJSON('File uploaded successfully to ' . $file, $file, 'success');
+	outputJSON('File uploaded successfully to ' . $file, $file, $arr[0]['LAST_INSERT_ID()'], 'success');
 }
 ?>

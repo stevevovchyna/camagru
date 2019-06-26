@@ -2,6 +2,9 @@
 /* Password reset process, updates database with new user password */
 require $_SERVER['DOCUMENT_ROOT'] . '/config/database.php';
 session_start();
+if (isset($_SESSION['previous'])) {
+	unset($_SESSION['alert']);
+}
 
 // Make sure the form is being submitted with method="post"
 if ($_SERVER['REQUEST_METHOD'] == 'POST') { 

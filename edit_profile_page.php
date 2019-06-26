@@ -4,23 +4,27 @@ session_start();
 if ( $_SESSION['logged_in'] != true ) {
 	$_SESSION['message'] = "You must log in first";
 	header("location: error.php");    
-  }
-  else {
-	  // Makes it easier to read
-	  $username = $_SESSION['username'];
-	  $email = $_SESSION['email'];
-	  $active = $_SESSION['active'];
-	  $notifications = $_SESSION['notifications'];
-	  $hash = $_SESSION['hash'];
-  }
-  ?>
+}
+else {
+	// Makes it easier to read
+	$username = $_SESSION['username'];
+	$email = $_SESSION['email'];
+	$active = $_SESSION['active'];
+	$notifications = $_SESSION['notifications'];
+	$hash = $_SESSION['hash'];
+	$_SESSION['previous'] = basename($_SERVER['PHP_SELF']);
+}
+
+?>
 <!DOCTYPE html>
 <html>
-
-<head>
-	<title>Edit your profile data</title>
-</head>
-
+	<head>
+		<title>Edit your profile data</title>
+		<link rel="stylesheet" href="style/login-register.css">
+		<link rel="stylesheet" href="style/header-footer.css">
+		<link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-dark.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
 <?php 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (isset($_POST['edit'])) {
@@ -30,18 +34,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			require 'edit_profile.php';
 		}
 		else {
-			$_SESSION['message'] = "Please change some data in order to submit changes!";
+			$_SESSION['alert'] = "Please edit some data in order to submit changes!";
 		}
     }
 }
 ?>
-
 <body>
-	<div>
-		<a href="profile.php">Back to the Profile</a>
-	</div>
-	<h2>Edit your Profile data</h2>
-	<form action="edit_profile_page.php" method="post" autocomplete="off">
+	<header class="sticky">
+		<?php
+			if ( $_SESSION['logged_in'] === true ) {
+				echo "<button> Welcome, ".$_SESSION['username']."</button>";
+				echo "<a href=\"feed.php\"><button>Feed</button></a>";
+				echo "<a href=\"profile.php\"><button>My Profile</button></a>";
+				echo "<a href=\"logout.php\"><button>Log Out</button></a>";
+			}
+		?>
+	</header>
+
+	<form action="edit_profile_page.php" method="post" autocomplete="off" class="login-register-edit">
+		<h2>Edit your Profile data</h2>
 		<div>
 			<div>
 				<label>
@@ -69,10 +80,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		</div>
 		<button type="submit" name="edit" />Submit changes</button>
 	</form>
-	<p><?=$_SESSION['message'];?></p>
+	<span class="editing-toast toast <?php if(!isset($_SESSION['alert']) || $_SESSION['alert'] === ""){echo "hidden";}?>"><?=$_SESSION['alert']?></span>
 	<div>
-		<h2>Choose Your New Password</h2>
-		<form action="reset_password.php" method="post">
+		<form action="reset_password.php" method="post" class="login-register-edit">
+			<h2>Choose Your New Password</h2>
 			<div>
 				<label>
 					New Password
@@ -88,5 +99,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			<button class="button button-block" />Reset Password</button>
 		</form>
 	</div>
+	<footer class="sticky footer-everywhere">
+		<p>Camagru by svovchyn</p>
+	</footer>
 </body>
 </html>

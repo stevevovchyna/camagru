@@ -43,7 +43,22 @@ $result = $statement->execute(
 if ($result) {
 	$_SESSION['message'] = "Picture uploaded!";
 }
-echo $file;
+$query = "SELECT LAST_INSERT_ID()";
+$statement = $pdo->prepare($query);
+$statement->execute();
+$arr = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+function outputJSON($msg, $file = '', $post_id = '', $status = 'error'){
+    header('Content-Type: application/json');
+    die(json_encode(array(
+		'data' => $msg,
+		'file' => $file,
+		'status' => $status,
+		'post_id' => $post_id
+    )));
+}
+
+outputJSON('File uploaded successfully to ' . $file, $file, $arr[0]['LAST_INSERT_ID()'], 'success');
 
 
 ?>

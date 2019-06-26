@@ -1,13 +1,16 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . '/config/database.php';
 session_start();
+if (isset($_SESSION['previous'])) {
+	unset($_SESSION['alert']);
+}
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="style/app.css">
-	<link rel="stylesheet" href="style/index.css">
+	<link rel="stylesheet" href="style/feed.css">
+	<link rel="stylesheet" href="style/header-footer.css">
 	<link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-dark.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Camagru</title>
@@ -17,13 +20,14 @@ session_start();
 		<?php
 			if ( $_SESSION['logged_in'] === true ) {
 				echo "<button> Welcome, ".$_SESSION['username']."</button>";
-				echo "<a href=\"feed.php\"><button>Feed</button></a>";
+				echo "<a href=\"index.php\"><button>Home</button></a>";
 				echo "<a href=\"profile.php\"><button>My Profile</button></a>";
+				echo "<a href=\"edit_profile_page.php\"><button>Edit Profile</button></a>";
 				echo "<a href=\"logout.php\"><button>Log Out</button></a>";
 			} else {
+				echo "<a href=\"index.php\"><button>Home</button></a>";
 				echo "<a href=\"signup_page.php\"><button>Sign Up</button></a>";
 				echo "<a href=\"login_page.php\"><button>Log In</button></a>";
-				echo "<a href=\"feed.php\"><button>Feed</button></a>";
 			}
 		?>
 	</header>
@@ -116,6 +120,8 @@ session_start();
 			echo "</div>";		
 		}
 		?>
+	</div>
+	<footer class="sticky">
 		<form action="feed.php" method="get" class="paginator">
 			<div class="row paginator">
 				<button class="col-sm" <?php if($pageno <= 1) { echo "disabled";} ?> name="pageno" value="1">Start</button>
@@ -124,7 +130,7 @@ session_start();
 				<button class="col-sm" <?php if($pageno >= $total_pages) {echo "disabled";} ?> name="pageno" value="<?php echo $total_pages; ?>">End</button>
 			</div>
 		</form>
-	</div>
+	</footer>
 	<script src="js/feed.js"></script>
 </body>
 </html>

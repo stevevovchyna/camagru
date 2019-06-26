@@ -1,6 +1,9 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . '/config/database.php';
 session_start();
+if (isset($_SESSION['previous'])) {
+	unset($_SESSION['alert']);
+}
 // Check if user is logged in using the session variable
 if ( $_SESSION['logged_in'] != true ) {
 	$_SESSION['message'] = "You must log in before viewing your profile page!";
@@ -17,17 +20,24 @@ if ( $_SESSION['logged_in'] != true ) {
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="style/app.css">
+	<link rel="stylesheet" href="style/index.css">
 	<link rel="stylesheet" href="style/profile.css">
+	<link rel="stylesheet" href="style/header-footer.css">
 	<link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-dark.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Welcome, <?= $username ?></title>
 </head>
 <body>
-	<a href="edit_profile_page.php"><button>Edit Profile</button></a>
-	<a href="logout.php"><button>Log Out</button></a>
-	<a href="feed.php"><button>Feed</button></a>
-	<a href="index.php">Home</a>
+	<header class="sticky">
+		<?php
+			if ( $_SESSION['logged_in'] === true ) {
+				echo "<a href=\"index.php\"><button>Home</button></a>";
+				echo "<a href=\"feed.php\"><button>Feed</button></a>";
+				echo "<a href=\"edit_profile_page.php\"><button>Edit Profile</button></a>";
+				echo "<a href=\"logout.php\"><button>Log Out</button></a>";
+			}
+		?>
+	</header>
 	<p>
 	<?php 
 	// Display message about account verification link only once

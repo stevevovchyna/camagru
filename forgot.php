@@ -2,7 +2,9 @@
 /* Reset your password form, sends reset.php password link */
 require $_SERVER['DOCUMENT_ROOT'] . '/config/database.php';
 session_start();
-
+if (isset($_SESSION['previous'])) {
+	unset($_SESSION['alert']);
+}
 // Check if form submitted with method="post"
 if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) 
 {   

@@ -53,7 +53,7 @@ if ($newnotifications !== $currentnotifications) {
 	}
 }
 
-$_SESSION['message'] = $message . '.';
+$_SESSION['alert'] = $message . '.';
 
 header("location: edit_profile_page.php");
 

@@ -48,7 +48,10 @@
 		);
 		$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($posts as $post) {
-			echo "<img class=\"pure-img\" src=\"".$post['post_url']."\">";
+			echo "<div id=\"post".$post['post_id']."\">";
+			echo "<img src=\"".$post['post_url']."\">";
+			echo "<button class=\"small\" id=\"".$post['post_id']."\" onclick=\"delPostButton(this)\">Delete</button>";
+			echo "</div>";
 		}
 		?>
 	</div>

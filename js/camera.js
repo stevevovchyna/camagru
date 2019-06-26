@@ -50,17 +50,25 @@ var png = "";
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 				try {
 					var resp = JSON.parse(xmlhttp.response);
+					var newDiv = document.createElement("div");
+					newDiv.setAttribute('id', "post" + resp.post_id);
 					var newImage = document.createElement("img");
 					newImage.setAttribute('src', resp.file);
+					var delButton = document.createElement('button');
+					delButton.setAttribute('class', 'small');
+					delButton.setAttribute('id', resp.post_id);
+					delButton.setAttribute('onclick', 'delPostButton(this)');
+					delButton.innerText = "Delete";
 					var thumb = document.getElementById('thumb');
-					thumb.append(newImage);
+					newDiv.appendChild(newImage);
+					newDiv.appendChild(delButton);
+					thumb.append(newDiv);
 				} catch (e) {
 					var resp = {
 						status: "error",
 						data: "Unknown error occured: " + xmlhttp.responseText
 					};
 				}
-				console.log(resp.status + ': ' + resp.data);
 			}
 		};
 		xmlhttp.send(data);
@@ -74,10 +82,27 @@ var png = "";
 		xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xmlhttp.onreadystatechange = () => {
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-				var newImage = document.createElement("img");
-				newImage.setAttribute('src', xmlhttp.responseText);
-				var thumb = document.getElementById('thumb');
-				thumb.append(newImage);
+				try {
+					var resp = JSON.parse(xmlhttp.response);
+					var newDiv = document.createElement("div");
+					newDiv.setAttribute('id', "post" + resp.post_id);
+					var newImage = document.createElement("img");
+					newImage.setAttribute('src', resp.file);
+					var delButton = document.createElement('button');
+					delButton.setAttribute('class', 'small');
+					delButton.setAttribute('id', resp.post_id);
+					delButton.setAttribute('onclick', 'delPostButton(this)');
+					delButton.innerText = "Delete";
+					var thumb = document.getElementById('thumb');
+					newDiv.appendChild(newImage);
+					newDiv.appendChild(delButton);
+					thumb.append(newDiv);
+				} catch (e) {
+					var resp = {
+						status: "error",
+						data: "Unknown error occured: " + xmlhttp.responseText
+					};
+				}
 			}
 		}
 		xmlhttp.send("imgData=" + picture + "&png=" + png);
@@ -102,5 +127,20 @@ function pngPickerCloseButton(imgs) {
 	document.getElementById('capture').disabled = true;
 	document.getElementById('_submit').disabled = true;
 	document.getElementById('video1').style.display = "flex";
+}
+
+function delPostButton(el) {
+	var postID = el.id;
+	var divID = "post" + postID;
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("POST", "post_delete.php");
+	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xmlhttp.onreadystatechange = () => {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			var list = document.getElementById(divID);
+			list.remove(list);
+		}
+	}
+	xmlhttp.send("post_id=" + postID);
 }
 
