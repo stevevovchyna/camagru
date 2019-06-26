@@ -83,8 +83,8 @@ session_start();
 
 			//POST LABEL
 			echo "<div class=\"post\">";
-			echo "<p class=\"author\">Post by ".$postik['username']." created on ".$postik['date_created']."</p>";
 			echo "<img src=\"".$postik['post_url']."\">";
+			echo "<p class=\"author\">Post by ".$postik['username']." created on ".$postik['date_created']."</p>";
 
 			if ($_SESSION['logged_in'] == true) {
 				echo "<button name=\"".$postik['post_id']."\" onclick=\"".$like."\" class=\"like-button\"><span>".$count.$likeword."</button>";
@@ -116,7 +116,7 @@ session_start();
 			echo "</div>";		
 		}
 		?>
-		<form action="feed.php" method="get">
+		<form action="feed.php" method="get" class="paginator">
 			<div class="row paginator">
 				<button class="col-sm" <?php if($pageno <= 1) { echo "disabled";} ?> name="pageno" value="1">Start</button>
 				<button class="col-sm" <?php if($pageno <= 1) {echo "disabled";} ?> name="pageno" value="<?php echo $pageno - 1 ?>">Previous</button>

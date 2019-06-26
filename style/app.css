@@ -46,10 +46,15 @@ textarea {
 
 .author {
 	margin-left: 5%;
+	font-weight: 100;
 }
 
 .post {
 	margin-bottom: 4%;
+}
+
+.paginator {
+	border: 0px solid black;
 }
 
 .comment {
