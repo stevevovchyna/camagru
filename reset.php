@@ -39,42 +39,33 @@ else {
 
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="style/login-register.css">
+	<link rel="stylesheet" href="style/header-footer.css">
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-dark.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Reset Your Password</title>
-	<?php include 'css/css.html'; ?>
 </head>
-
 <body>
-	<div class="form">
-
+	<div class="login-register">
 		<h1>Choose Your New Password</h1>
-
 		<form action="reset_password.php" method="post">
-
-			<div class="field-wrap">
+			<div>
 				<label>
-					New Password<span class="req">*</span>
+					New Password
 				</label>
 				<input type="password" required name="newpassword" autocomplete="off" />
 			</div>
-
-			<div class="field-wrap">
+			<div>
 				<label>
-					Confirm New Password<span class="req">*</span>
+					Confirm New Password
 				</label>
 				<input type="password" required name="confirmpassword" autocomplete="off" />
 			</div>
-
 			<!-- This input field is needed, to get the email of the user -->
 			<input type="hidden" name="email" value="<?= $email ?>">
 			<input type="hidden" name="hash" value="<?= $hash ?>">
-
-			<button class="button button-block" />Apply</button>
-
+			<button>Apply</button>
 		</form>
-
 	</div>
-	<!-- <script src="js/index.js"></script> -->
-
 </body>
-
 </html>

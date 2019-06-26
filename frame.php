@@ -11,24 +11,13 @@
 			<img id="expandedImg">
 		</div>
 		<div class="row">
-			<div class="column">
-				<img class="pure-img" src="images/cat_8.png" alt="Nature" style="width:100%" onclick="pngPicker(this);">
-			</div>
-			<div class="column">
-				<img class="pure-img" src="images/flames.png" alt="Snow" style="width:100%" onclick="pngPicker(this);">
-			</div>
-			<div class="column">
-				<img class="pure-img" src="images/violin.png" alt="Mountains" style="width:100%" onclick="pngPicker(this);">
-			</div>
-			<div class="column">
-				<img class="pure-img" src="images/vinette.png" alt="Mountains" style="width:100%" onclick="pngPicker(this);">
-			</div>
-			<div class="column">
-				<img class="pure-img" src="images/doggy.png" alt="Mountains" style="width:100%" onclick="pngPicker(this);">
-			</div>
-			<div class="column">
-				<img class="pure-img" src="images/doggy2.png" alt="Mountains" style="width:100%" onclick="pngPicker(this);">
-			</div>
+			<?php
+			$scanned_directory = array_diff(scandir($_SERVER['DOCUMENT_ROOT']."/images"), array('..', '.'));
+			foreach($scanned_directory as $pic){ ?>
+				<div class="column">
+					<img src="images/<?=$pic?>" onclick="pngPicker(this);">
+				</div>
+			<?php } ?>
 		</div>
 		<div id="buttons">
 			<button id="capture" disabled >Take picture</button>

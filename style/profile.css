@@ -8,7 +8,7 @@ body {
 }
 
 .frame {
-	margin: 5% 5% 0% 5% !important;
+	margin: 1rem 1rem 0rem 1rem !important;
 	display: flex;
 }
 
@@ -38,7 +38,7 @@ body {
 /* Clear floats after the columns */
 .row:after {
   content: "";
-  display: table !important;
+  /* display: table !important; */
   clear: both;
 }
 
@@ -46,17 +46,19 @@ body {
 	display: block !important;
 	overflow: auto !important;
 	white-space: nowrap;
-	margin: 3% 1% 0% 1% !important;
+	margin: 1rem 1rem 0rem 1rem !important;
 }
 
 /* The expanding image container */
 .container {
-  position: relative;
-  display: none;
-  padding: 0 !important;
+	position: relative;
+	display: none;
+	padding: 0 !important;
 }
 
 .video1, .container {
+	position: relative;
+	padding: 0 !important;
 	margin: 0% auto 0% 30% !important;
 }
 
@@ -77,6 +79,10 @@ body {
 	z-index: 1;
 }
 
+#video1 {
+	display: flex;
+}
+
 #expandedImg {
 	position: absolute;
 	top: 0;
@@ -86,7 +92,7 @@ body {
 
 #thumb {
 	padding: 0% !important;
-	width: 30%;
+	width: 80%;
 	overflow-y: scroll;
 	height: 80vh;
 }
@@ -102,7 +108,6 @@ body {
 
 #picture-png-buttons {
 	display: inline-block !important;
-	margin-right: 0% !important;
 }
 
 ::-webkit-scrollbar {

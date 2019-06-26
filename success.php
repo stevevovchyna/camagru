@@ -1,5 +1,4 @@
 <?php
-/* Displays all error messages */
 session_start();
 if (isset($_SESSION['previous'])) {
 	unset($_SESSION['alert']);
@@ -8,22 +7,27 @@ if (isset($_SESSION['previous'])) {
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Success</title>
+	<link rel="stylesheet" href="style/index.css">
+	<link rel="stylesheet" href="style/header-footer.css">
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-dark.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<title>Success</title>
 </head>
+
 <body>
-<div>
-    <h1>Success</h1>
-    <p>
-    <?php 
-    if(isset($_SESSION['message']) && !empty($_SESSION['message'])) {
-		echo $_SESSION['message'];
-		unset($_SESSION['message']);
-	} else {
-        header("location: index.php");
-	}
-    ?>
-    </p>     
-    <a href="index.php"><button>Home</button></a>
-</div>
+	<div id="back">
+		<header class="sticky logout-header"></header>
+		<p id="logout"><?php 
+			if(isset($_SESSION['message']) && !empty($_SESSION['message'])) {
+				echo $_SESSION['message'];
+				unset($_SESSION['message']);
+			} else {
+				header("location: index.php");
+			}
+    	?></p>
+		<div id="home-button">
+			<a href="index.php"><button>Home</button></a>
+		</div>
+	</div>
 </body>
 </html>
