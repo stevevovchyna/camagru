@@ -4,7 +4,7 @@ body {
 }
 #back {
 	height: 100vh;
-	background-image: url(../wallpaper/wallpaper.jpg);
+	background-image: url(../background/wallpaper.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
 	display: block;

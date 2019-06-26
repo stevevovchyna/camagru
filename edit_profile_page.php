@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		<?php
 			if ( $_SESSION['logged_in'] === true ) {
 				echo "<button> Welcome, ".$_SESSION['username']."</button>";
+				echo "<a href=\"index.php\"><button>Home</button></a>";
 				echo "<a href=\"feed.php\"><button>Feed</button></a>";
 				echo "<a href=\"profile.php\"><button>My Profile</button></a>";
 				echo "<a href=\"logout.php\"><button>Log Out</button></a>";
@@ -99,8 +100,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			<button class="button button-block" />Reset Password</button>
 		</form>
 	</div>
-	<footer class="sticky footer-everywhere">
-		<p>Camagru by svovchyn</p>
-	</footer>
 </body>
 </html>
