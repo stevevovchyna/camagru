@@ -89,13 +89,14 @@ if (isset($_SESSION['previous'])) {
 			echo "<div class=\"post card\">";
 			echo "<div class=\"image-container\">";
 			echo "<img src=\"".$postik['post_url']."\">";
-			echo "<div class=\"content\"><p class=\"author\">@".$postik['username']." on ".date("F j, Y, g:i a", strtotime($postik['date_created']))."</p></div>";
+			echo "<div class=\"overlay\"><p class=\"author\">@".$postik['username']." on ".date("F j, Y, g:i a", strtotime($postik['date_created']))." / ".$count.$likeword."</p></div>";
 			echo "</div>";
-			echo "<button class=\"more-button\" onclick=\"showActions(this)\">&bull;&bull;&bull;</button>";
-			echo "<div class=\"hidden\">";
-
+			
 			if ($_SESSION['logged_in'] == true) {
-				echo "<button name=\"".$postik['post_id']."\" onclick=\"".$like."\" class=\"like-button small secondary\"><span>".$count.$likeword."</button>";
+				echo "<button class=\"more-button\" onclick=\"showActions(this)\">&bull;&bull;&bull;</button>";
+				echo "<div class=\"hidden\">";
+				echo "<button name=\"".$postik['post_id']."\" onclick=\"".$like."\" class=\"like-button small secondary\"><span>".$count.$likeword."</span></button>";
+				echo "<hr>";
 
 				$query = "SELECT * FROM comments INNER JOIN users ON comments.user_id = users.user_id WHERE post_id = :post_id";
 				$statement = $pdo->prepare($query);
@@ -118,10 +119,8 @@ if (isset($_SESSION['previous'])) {
 				echo '</div>';
 				echo "<textarea id=\"".$postik['post_id']."\" rows=\"3\"></textarea>";
 				echo '<button name="' .$postik['post_id']. '" type="button" onclick="submitComment(this)" class="comment-button">Submit Comment</button>';
-			} else {
-				echo "<button class=\"like-button small secondary\"><span>".$count.$likeword."</button>";
+				echo "</div>";		
 			}
-			echo "</div>";		
 			echo "</div>";		
 		}
 		?>
