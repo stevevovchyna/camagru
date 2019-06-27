@@ -18,21 +18,22 @@ if (isset($_SESSION['previous'])) {
 <body>
 	<header class="sticky">
 		<?php
-			if ( $_SESSION['logged_in'] === true ) {
+			if ( $_SESSION['logged_in'] === true && $_SESSION['active'] == 1) {
 				echo "<button> Welcome, ".$_SESSION['username']."</button>";
 				echo "<a href=\"../index.php\"><button>Home</button></a>";
 				echo "<a href=\"profile.php\"><button>My Profile</button></a>";
 				echo "<a href=\"edit_profile_page.php\"><button>Edit Profile</button></a>";
 				echo "<a href=\"logout.php\"><button>Log Out</button></a>";
+			} else if ($_SESSION['logged_in'] === true && $_SESSION['active'] == 0) {
+				echo "<a href=\"../index.php\"><button>Home</button></a>";
+				echo "<a href=\"edit_profile_page.php\"><button>Edit Profile</button></a>";
+				echo "<a href=\"logout.php\"><button>Log Out</button></a>";				
 			} else {
-				echo "<a href=\"index.php\"><button>Home</button></a>";
+				echo "<a href=\"../index.php\"><button>Home</button></a>";
 				echo "<a href=\"signup_page.php\"><button>Sign Up</button></a>";
 				echo "<a href=\"login_page.php\"><button>Log In</button></a>";
 			}
 		?>
-	</header>
-	<header class="sticky">
-		
 	</header>
 	<div class="feed-container">
 		<?php
@@ -95,7 +96,7 @@ if (isset($_SESSION['previous'])) {
 			echo "<div class=\"overlay\"><p class=\"author\">@".$postik['username']." on ".date("F j, Y, g:i a", strtotime($postik['date_created']))." / ".$count.$likeword."</p></div>";
 			echo "</div>";
 			
-			if ($_SESSION['logged_in'] == true) {
+			if ($_SESSION['logged_in'] == true && $_SESSION['active'] == 1) {
 				echo "<button class=\"more-button\" onclick=\"showActions(this)\">&bull;&bull;&bull;</button>";
 				echo "<div class=\"hidden\">";
 				echo "<button name=\"".$postik['post_id']."\" onclick=\"".$like."\" class=\"like-button small secondary\"><span>".$count.$likeword."</span></button>";

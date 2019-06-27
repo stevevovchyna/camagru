@@ -2,7 +2,7 @@
 /* Log out process, unsets and destroys session variables */
 session_start();
 if ( $_SESSION['logged_in'] !== true ) {
-	header("location: feed.php");
+	header("location: ../index.php");
 }
 session_unset();
 session_destroy(); 

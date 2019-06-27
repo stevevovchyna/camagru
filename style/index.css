@@ -2,6 +2,11 @@ body {
 	margin: 0% !important;
 	padding: 0% !important;
 }
+
+#one-time-alarm {
+	text-align: center;
+}
+
 #back {
 	height: 100vh;
 	background-image: url(../background/wallpaper.jpg);

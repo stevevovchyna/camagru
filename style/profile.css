@@ -3,10 +3,6 @@ body {
   font-family: Arial;
 }
 
-#one-time-alarm {
-	text-align: center;
-}
-
 *:focus {
     outline: none;
 }

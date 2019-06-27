@@ -1,3 +1,10 @@
+<?php 
+if ( $_SESSION['logged_in'] != true ) {
+	$_SESSION['message'] = "That's definitely not where you're meant to be, bastard!";
+	header("location: error.php");    
+}
+?>
+
 <div class="frame">
 	<div id="picture-png-buttons">
 		<div class="video1">

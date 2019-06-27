@@ -5,9 +5,12 @@ if (isset($_SESSION['previous'])) {
 	unset($_SESSION['alert']);
 }
 // Check if user is logged in using the session variable
-if ( $_SESSION['logged_in'] != true ) {
+if ($_SESSION['logged_in'] != true) {
 	$_SESSION['message'] = "You must log in before viewing your profile page!";
 	header("location: error.php");    
+} else if ($_SESSION['logged_in'] === true && $_SESSION['active'] == 0){
+	$_SESSION['message'] = "Please activate your account first!";
+	header("location: error.php");
 } else {
     // Makes it easier to read
     $username = $_SESSION['username'];
@@ -30,7 +33,7 @@ if ( $_SESSION['logged_in'] != true ) {
 <body>
 	<header class="sticky">
 		<?php
-			if ( $_SESSION['logged_in'] === true ) {
+			if ($_SESSION['logged_in'] === true) {
 				echo "<a href=\"../index.php\"><button>Home</button></a>";
 				echo "<a href=\"feed.php\"><button>Feed</button></a>";
 				echo "<a href=\"edit_profile_page.php\"><button>Edit Profile</button></a>";
@@ -38,23 +41,8 @@ if ( $_SESSION['logged_in'] != true ) {
 			}
 		?>
 	</header>
-	<p>
-<!-- Display message about account verification link only once -->
-	<?php if (isset($_SESSION['message'])) { ?>
-		<div id="one-time-alarm">
-				<p><?=$_SESSION['message']?></p>
-		</div>
-	<?php unset($_SESSION['message']); } ?>
-	</p>
-	<?php
-    // Keep reminding the user this account is not active, until they activate
-	if (!$active){
-		echo '<span id="one-time-alarm" class="toast"> Account is unverified, please confirm your email by clicking on the email link!</span>';
-	} else {
-		include 'frame.php';
-	}
-	?>
-	<?php if ($active == 1) { echo '<script src="../js/camera.js"></script>';} ?>
+	<?php include 'frame.php'; ?>
+	<script src="../js/camera.js"></script>
 	<?php include 'footer.php'; ?>
 	</body>
 </html>

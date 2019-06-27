@@ -1,22 +1,24 @@
 <?php
-/* Password reset process, updates database with new user password */
 require $_SERVER['DOCUMENT_ROOT'] . '/config/database.php';
 session_start();
 if (isset($_SESSION['previous'])) {
 	unset($_SESSION['alert']);
 }
 
-// Make sure the form is being submitted with method="post"
 if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
+	$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+	if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+		$_SESSION['message'] = 'Invalid parameters provided for password renewal!';
+		header("location: ../views/error.php");
+	}
+	$hash = filter_var($_POST['hash'], FILTER_SANITIZE_STRING);
+	$newpassword = filter_var($_POST['newpassword'], FILTER_SANITIZE_STRING);
+	$confirmpassword = filter_var($_POST['confirmpassword'], FILTER_SANITIZE_STRING);
 
     // Make sure the two passwords match
-    if ( $_POST['newpassword'] == $_POST['confirmpassword'] ) { 
+    if ($newpassword === $confirmpassword) { 
 
-        $new_password = password_hash($_POST['newpassword'], PASSWORD_BCRYPT);
-        
-        // We get $_POST['email'] from the hidden input field of reset.php form
-        $email = $_SESSION['email'];
-		$hash = $_SESSION['hash'];
+        $new_password = password_hash($newpassword, PASSWORD_BCRYPT);
 		$query = "UPDATE users SET password = :new_password WHERE email = :email AND hash = :hash";
 		$statement = $pdo->prepare($query);
 		$result = $statement->execute(

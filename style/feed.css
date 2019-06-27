@@ -41,15 +41,6 @@ body {
 	position: relative;
 }
 
-/* .image-container .content {
-	position: absolute;
-	bottom: 0;
-	background: rgb(0, 0, 0);
-	background: rgba(0, 0, 0, 0.5);
-	color: #f1f1f1;
-	width: 100%;
-} */
-
 .more-button {
 	margin: 0% !important;
 	padding: 0% !important;
@@ -69,7 +60,7 @@ body {
 
 .like-button {
 	  display: block;
-	  margin: 1rem auto 1rem 3% !important;
+	  margin: 0.5rem auto 0.5rem 3% !important;
 
 }
   

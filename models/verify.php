@@ -1,16 +1,16 @@
 <?php
-//   VERIFY.PHP
-/* Verifies registered user email, the link to this page
-   is included in the register.php email message 
-*/
 require $_SERVER['DOCUMENT_ROOT'] . '/config/database.php';
 session_start();
 
 // Make sure email and hash variables aren't empty
 if(isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !empty($_GET['hash']))
 {
-    $email = $_GET['email']; 
-    $hash = $_GET['hash'];
+	$email = filter_var($_GET['email'], FILTER_SANITIZE_EMAIL);
+	if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+		$_SESSION['message'] = 'Invalid parameters provided for account verification!';
+    	header("location: ../views/error.php");
+	}
+	$hash = filter_var($_GET['hash'], FILTER_SANITIZE_STRING);
     
     // Select user with matching email and hash, who hasn't verified their account yet (active = 0)
     $query = "SELECT * FROM users WHERE email = :email AND hash = :hash AND active = '0'";

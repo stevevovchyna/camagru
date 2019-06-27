@@ -6,7 +6,8 @@ if (isset($_SESSION['previous'])) {
 	unset($_SESSION['alert']);
 }
 if ( $_SESSION['logged_in'] === true ) {
-	header("location: feed.php");
+	$_SESSION['message'] = "Ooops! You are not meant to be here, I guess!";
+	header("location: ../index.php");
 }
 ?>
 <!DOCTYPE html>
@@ -36,15 +37,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	<h1>Log In</h1>
 		<form action="login_page.php" method="post" autocomplete="off" class="">
 			<div>
-				<label>
-					Email Address
-				</label>
+				<label>Email Address</label>
 				<input type="email" required autocomplete="off" value="steve@gmail.com" name="email" />
 			</div>
 			<div>
-				<label>
-					Password
-				</label>
+				<label>Password</label>
 				<input type="password" value="111" required autocomplete="off" name="password" />
 			</div>
 			<p><a href="forgot.php">Forgot Password?</a></p>

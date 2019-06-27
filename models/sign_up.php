@@ -1,15 +1,14 @@
 <?php
+$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+	$_SESSION['message'] = 'Registration failed!';
+    header("location: ../views/error.php");
+}
+$username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
 
-/* Registration process, inserts user info into the database 
-   and sends account confirmation email message
- */
+$_SESSION['email'] = $email;
+$_SESSION['username'] = $username;
 
-// Set session variables to be used on profile.php page
-$_SESSION['email'] = $_POST['email'];
-$_SESSION['username'] = $_POST['username'];
-
-$username = $_POST['username'];
-$email = $_POST['email'];
 $password = (password_hash($_POST['password'], PASSWORD_BCRYPT));
 $hash = md5(rand(0,1000));
 
@@ -75,7 +74,7 @@ else { // Email doesn't already exist in a database, proceed...
 
         mail($to, $subject, $message_body);
 
-        header("location: ../views/profile.php"); 
+        header("location: ../index.php"); 
 
     }
     else {

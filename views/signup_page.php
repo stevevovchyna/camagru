@@ -5,7 +5,7 @@ if (isset($_SESSION['previous'])) {
 	unset($_SESSION['alert']);
 }
 if ( $_SESSION['logged_in'] === true ) {
-	header("location: feed.php");
+	header("location: ../index.php");
 }
 ?>
 <!DOCTYPE html>
@@ -35,23 +35,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		<h1>Sign Up</h1>
 		<form action="signup_page.php" method="post" autocomplete="off">
 			<div>
-				<div>
-					<label>
-						How should we call you?
-					</label>
+					<label>How should we call you?</label>
 					<input type="text" required autocomplete="off" name='username' />
-				</div>
 			</div>
 			<div>
-				<label>
-					Email Address
-				</label>
+				<label>Email Address</label>
 				<input type="email" required autocomplete="off" name='email' />
 			</div>
 			<div>
-				<label>
-					Password
-				</label>
+				<label>Password</label>
 				<input type="password" required autocomplete="off" name='password' />
 			</div>
 			<button class="inverse" type="submit" name="signup" />Sign Up</button>

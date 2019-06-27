@@ -19,11 +19,15 @@ if (isset($_SESSION['previous'])) {
 	<div id="back">
 		<header class="sticky">
 			<?php
-				if ( $_SESSION['logged_in'] === true ) {
+				if ($_SESSION['logged_in'] === true && $_SESSION['active'] == 1) {
 					echo "<a href=\"views/feed.php\"><button>Feed</button></a>";
 					echo "<a href=\"views/profile.php\"><button>My Profile</button></a>";
 					echo "<a href=\"views/edit_profile_page.php\"><button>Edit Profile</button></a>";
 					echo "<a href=\"views/logout.php\"><button>Log Out</button></a>";
+				} else if ($_SESSION['logged_in'] === true && $_SESSION['active'] == 0) {
+					echo "<a href=\"views/feed.php\"><button>Feed</button></a>";
+					echo "<a href=\"views/edit_profile_page.php\"><button>Edit Profile</button></a>";
+					echo "<a href=\"views/logout.php\"><button>Log Out</button></a>";				
 				} else {
 					echo "<a href=\"views/signup_page.php\"><button>Sign Up</button></a>";
 					echo "<a href=\"views/login_page.php\"><button>Log In</button></a>";
@@ -31,6 +35,14 @@ if (isset($_SESSION['previous'])) {
 				}
 			?>
 		</header>
+		<p>
+		<!-- Display message about account verification link only once -->
+		<?php if (isset($_SESSION['message'])) { ?>
+			<div id="one-time-alarm">
+					<p><?=$_SESSION['message']?></p>
+			</div>
+		<?php unset($_SESSION['message']); } ?>
+		</p>
 		
 		<?php
 				if ( $_SESSION['logged_in'] === true ) {
@@ -40,6 +52,9 @@ if (isset($_SESSION['previous'])) {
 				}
 		?>
 	</div>
+	<?php if (isset($_SESSION['active']) && $_SESSION['active'] == 0){
+		echo '<span id="one-time-alarm" class="toast"> Account is unverified, please confirm your email by clicking on the email link!</span>';
+	} ?>
 	<?php include './views/footer.php'; ?>
 </body>
 </html>
