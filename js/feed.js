@@ -54,7 +54,7 @@ function submitComment(post) {
 			var comment = document.createElement("div");
 			comment.id = resp.comment_id;
 			comment.setAttribute('onclick', 'showDelButton(this)');
-			comment.innerText = resp.content + " by " + resp.username;
+			comment.innerText = resp.username + ": " + resp.content + " on " + resp.date;
 			
 			var delButton = document.createElement('button');
 			delButton.id = resp.comment_id;
@@ -90,4 +90,9 @@ function deleteComment(but) {
 function showDelButton(el) {
 	var id = ".delete-button" + el.id;
 	document.querySelector(id).classList.toggle('hidden');
+}
+
+function showActions(el) {
+	var child = el.nextSibling;
+	child.classList.toggle('hidden');
 }

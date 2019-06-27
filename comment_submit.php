@@ -8,6 +8,7 @@ $userID = $_SESSION['user_id'];
 $content = $_POST['content'];
 $date = date("Y-m-d H:i:s");
 $username = $_SESSION['username'];
+$dateout = date("F j, Y, g:i a", strtotime($date));
 
 
 $query = "INSERT INTO comments (post_id, user_id, content, date_created) VALUES (:post_id, :user_id, :content, :date_created)";
@@ -48,7 +49,7 @@ if ($arr) {
 				'content' => $content,
 				'username' => $username,
 				'comment_id' => $arr[0]['LAST_INSERT_ID()'],
-				'testik' => $message_body
+				'date' => $dateout
 			)
 		)
 	);
