@@ -53,8 +53,9 @@ function submitComment(post) {
 			
 			var comment = document.createElement("div");
 			comment.id = resp.comment_id;
+			comment.classList.add('comment-body');
 			comment.setAttribute('onclick', 'showDelButton(this)');
-			comment.innerText = resp.username + ": " + resp.content + " on " + resp.date;
+			comment.innerHTML = '<span class="comment-author">' + resp.username + ':</span> <span class="comment-content">' + resp.content + '</span> <span class="comment-date">on ' + resp.date + '</span>';
 			
 			var delButton = document.createElement('button');
 			delButton.id = resp.comment_id;

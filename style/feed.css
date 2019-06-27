@@ -45,6 +45,23 @@ body {
 	margin: 0% !important;
 	padding: 0% !important;
 }
+
+.comment-author {
+	font-weight: 500;
+}
+
+.comment-content {
+	font-weight: 100;
+}
+
+.comment-body {
+	margin: 0.8rem 0rem;
+}
+
+.comment-date {
+	font-size: 0.8rem;
+	font-weight: 100;
+}
   
 
 .card {

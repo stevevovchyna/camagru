@@ -114,7 +114,7 @@ if (isset($_SESSION['previous'])) {
 				echo '<div class="comment" id="comment'.$post_id.'">';
 				foreach ($fetch_comment as $comment) {
 					echo "<div class=\"comment-block\" id=\"comment-block".$comment['comment_id']."\">";
-					echo "<div onclick=\"showDelButton(this)\" id=\"".$comment['comment_id']."\">".$comment['username'].": ".$comment['content']." on ".date("F j, Y, g:i a", strtotime($comment['date_created']))."</div>";
+					echo "<div class=\"comment-body\" onclick=\"showDelButton(this)\" id=\"".$comment['comment_id']."\"><span class=\"comment-author\">".$comment['username'].":</span> <span class=\"comment-content\">".$comment['content']."</span> <span class=\"comment-date\">on ".date("F j, Y, g:i a", strtotime($comment['date_created']))."</span></div>";
 					if ($comment['username'] === $_SESSION['username']) {
 						echo "<button class=\"small hidden del-button delete-button".$comment['comment_id']."\" id=\"".$comment['comment_id']."\" onclick=\"deleteComment(this)\">Delete</button>";
 					}
