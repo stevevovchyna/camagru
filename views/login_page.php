@@ -13,8 +13,8 @@ if ( $_SESSION['logged_in'] === true ) {
 <html>
 <head>
 	<title>Login</title>
-	<link rel="stylesheet" href="style/login-register.css">
-	<link rel="stylesheet" href="style/header-footer.css">
+	<link rel="stylesheet" href="../style/login-register.css">
+	<link rel="stylesheet" href="../style/header-footer.css">
 	<link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-dark.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -22,13 +22,13 @@ if ( $_SESSION['logged_in'] === true ) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
     if (isset($_POST['login'])) { //user logging in
-        require 'login.php';
+        require '../models/login.php';
     }
 }
 ?>
 <body>
 	<header class="sticky">
-		<a href="index.php"><button>Home</button></a>
+		<a href="../index.php"><button>Home</button></a>
 		<a href="signup_page.php"><button>Sign Up</button></a>
 		<a href="feed.php"><button>Feed</button></a>
 	</header>
@@ -51,5 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 			<button name="login" />Log In</button>
 		</form>
 	</div>
+	<?php include 'footer.php'; ?>
 </body>
 </html>

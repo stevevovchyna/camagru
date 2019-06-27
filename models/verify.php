@@ -25,7 +25,7 @@ if(isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !
     if ($count == 0)
     { 
         $_SESSION['message'] = "Account has already been activated or the URL is invalid!";
-        header("location: error.php");
+        header("location: ../views/error.php");
     }
     else {
         $_SESSION['message'] = "Your account has been activated!";
@@ -38,12 +38,12 @@ if(isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !
 			)
 		);		
         $_SESSION['active'] = 1;
-        header("location: success.php");
+        header("location: ../views/success.php");
     }
 }
 else {
     $_SESSION['message'] = "Invalid parameters provided for account verification!";
-    header("location: error.php");
+    header("location: ../views/error.php");
 }     
 
 ?>

@@ -35,7 +35,7 @@ $count2 = $statement->rowCount();
 if ( $count > 0 || $count2 > 0) {
     
     $_SESSION['message'] = 'User with this email or username already exists!';
-    header("location: error.php");
+    header("location: ../views/error.php");
     
 }
 else { // Email doesn't already exist in a database, proceed...
@@ -71,16 +71,16 @@ else { // Email doesn't already exist in a database, proceed...
 
         Please click this link to activate your account:
 
-        http://localhost:8100/verify.php?email='.$email.'&hash='.$hash;  
+        http://localhost:8100/models/verify.php?email='.$email.'&hash='.$hash;  
 
         mail($to, $subject, $message_body);
 
-        header("location: profile.php"); 
+        header("location: ../views/profile.php"); 
 
     }
     else {
         $_SESSION['message'] = 'Registration failed!';
-        header("location: error.php");
+        header("location: ../views/error.php");
     }
 }
 ?>

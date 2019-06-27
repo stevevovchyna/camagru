@@ -15,7 +15,7 @@
 			$scanned_directory = array_diff(scandir($_SERVER['DOCUMENT_ROOT']."/images"), array('..', '.'));
 			foreach($scanned_directory as $pic){ ?>
 				<div class="column">
-					<img src="images/<?=$pic?>" onclick="pngPicker(this);">
+					<img src="../images/<?=$pic?>" onclick="pngPicker(this);">
 				</div>
 			<?php } ?>
 		</div>
@@ -28,7 +28,7 @@
 	</div>
 	<div class="thumb" id="thumb">
 		<?php
-		$query = "SELECT * FROM posts WHERE user_id = :user_id";
+		$query = "SELECT * FROM posts WHERE user_id = :user_id ORDER BY posts.date_created DESC";
 		$statement = $pdo->prepare($query);
 		$statement->execute(
 			array(
@@ -38,7 +38,7 @@
 		$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($posts as $post) {
 			echo "<div id=\"post".$post['post_id']."\">";
-			echo "<img src=\"".$post['post_url']."\">";
+			echo "<img src=\"../".$post['post_url']."\">";
 			echo "<button class=\"small\" id=\"".$post['post_id']."\" onclick=\"delPostButton(this)\">Delete</button>";
 			echo "</div>";
 		}

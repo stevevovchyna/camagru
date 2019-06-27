@@ -13,7 +13,7 @@ $statement->execute(
 $count = $statement->rowCount();
 if ( $count == 0 ){ // User doesn't exist
     $_SESSION['message'] = "User with that email doesn't exist!";
-    header("location: error.php");
+    header("location: ../views/error.php");
 }
 else { // User exists
 	$user = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -28,11 +28,11 @@ else { // User exists
         // This is how we'll know the user is logged in
         $_SESSION['logged_in'] = true;
 
-        header("location: index.php");
+        header("location: ../index.php");
     }
     else {
         $_SESSION['message'] = "Incorrect password, try again!";
-        header("location: error.php");
+        header("location: ../views/error.php");
     }
 }
 ?>

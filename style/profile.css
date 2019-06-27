@@ -3,6 +3,10 @@ body {
   font-family: Arial;
 }
 
+#one-time-alarm {
+	text-align: center;
+}
+
 *:focus {
     outline: none;
 }
@@ -109,6 +113,7 @@ body {
 #picture-png-buttons {
 	display: inline-block !important;
 }
+
 
 ::-webkit-scrollbar {
 	width: 5px;

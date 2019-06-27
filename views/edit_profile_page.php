@@ -20,8 +20,8 @@ else {
 <html>
 	<head>
 		<title>Edit your profile data</title>
-		<link rel="stylesheet" href="style/login-register.css">
-		<link rel="stylesheet" href="style/header-footer.css">
+		<link rel="stylesheet" href="../style/login-register.css">
+		<link rel="stylesheet" href="../style/header-footer.css">
 		<link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-dark.min.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if ($_POST['email'] !== $email ||
 			$_POST['username'] !== $username ||
 			$_POST['notifications'] !== $notifications) {
-			require 'edit_profile.php';
+			require $_SERVER['DOCUMENT_ROOT'] . '/models/edit_profile.php';
 		}
 		else {
 			$_SESSION['alert'] = "Please edit some data in order to submit changes!";
@@ -44,10 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		<?php
 			if ( $_SESSION['logged_in'] === true ) {
 				echo "<button> Welcome, ".$_SESSION['username']."</button>";
-				echo "<a href=\"index.php\"><button>Home</button></a>";
-				echo "<a href=\"feed.php\"><button>Feed</button></a>";
-				echo "<a href=\"profile.php\"><button>My Profile</button></a>";
-				echo "<a href=\"logout.php\"><button>Log Out</button></a>";
+				echo "<a href=\"../index.php\"><button>Home</button></a>";
+				echo "<a href=\"../views/feed.php\"><button>Feed</button></a>";
+				echo "<a href=\"../views/profile.php\"><button>My Profile</button></a>";
+				echo "<a href=\"../views/logout.php\"><button>Log Out</button></a>";
 			}
 		?>
 	</header>
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	</form>
 	<span class="editing-toast toast <?php if(!isset($_SESSION['alert']) || $_SESSION['alert'] === ""){echo "hidden";}?>"><?=$_SESSION['alert']?></span>
 	<div>
-		<form action="reset_password.php" method="post" class="login-register-edit">
+		<form action="../models/reset_password.php" method="post" class="login-register-edit">
 			<h2>Choose Your New Password</h2>
 			<div>
 				<label>
@@ -100,5 +100,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			<button class="button button-block" />Reset Password</button>
 		</form>
 	</div>
+	<?php include 'footer.php'; ?>
 </body>
 </html>

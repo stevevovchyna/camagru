@@ -12,7 +12,6 @@ $result = $statement->execute(
 	)
 );
 
-
 $query = "DELETE FROM comments WHERE post_id = :post_id";
 $statement = $pdo->prepare($query);
 $result = $statement->execute(

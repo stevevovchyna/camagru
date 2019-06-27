@@ -7,11 +7,11 @@ $random = bin2hex(random_bytes(10));
 $data = $_POST['imgData'];
 $png = $_POST['png'];
 $data = str_replace(' ', '+', $data);
-$file = "user_images/".$random.".png";
+$file = "../user_images/".$random.".png";
 $uri = substr($data, strpos($data, ",") + 1);
 file_put_contents($file, base64_decode($uri));
 
-$white_image = "http://localhost:8100/".$file;
+$white_image = $file;
 $photo_to_paste = $png;
 
 $im = imagecreatefrompng($white_image);
@@ -40,9 +40,6 @@ $result = $statement->execute(
 		'date_created' => date("Y-m-d H:i:s")
 	)
 );
-if ($result) {
-	$_SESSION['message'] = "Picture uploaded!";
-}
 $query = "SELECT LAST_INSERT_ID()";
 $statement = $pdo->prepare($query);
 $statement->execute();

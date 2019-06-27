@@ -20,14 +20,14 @@ if (isset($_SESSION['previous'])) {
 		<header class="sticky">
 			<?php
 				if ( $_SESSION['logged_in'] === true ) {
-					echo "<a href=\"feed.php\"><button>Feed</button></a>";
-					echo "<a href=\"profile.php\"><button>My Profile</button></a>";
-					echo "<a href=\"edit_profile_page.php\"><button>Edit Profile</button></a>";
-					echo "<a href=\"logout.php\"><button>Log Out</button></a>";
+					echo "<a href=\"views/feed.php\"><button>Feed</button></a>";
+					echo "<a href=\"views/profile.php\"><button>My Profile</button></a>";
+					echo "<a href=\"views/edit_profile_page.php\"><button>Edit Profile</button></a>";
+					echo "<a href=\"views/logout.php\"><button>Log Out</button></a>";
 				} else {
-					echo "<a href=\"signup_page.php\"><button>Sign Up</button></a>";
-					echo "<a href=\"login_page.php\"><button>Log In</button></a>";
-					echo "<a href=\"feed.php\"><button>Feed</button></a>";
+					echo "<a href=\"views/signup_page.php\"><button>Sign Up</button></a>";
+					echo "<a href=\"views/login_page.php\"><button>Log In</button></a>";
+					echo "<a href=\"views/feed.php\"><button>Feed</button></a>";
 				}
 			?>
 		</header>
@@ -40,5 +40,6 @@ if (isset($_SESSION['previous'])) {
 				}
 		?>
 	</div>
+	<?php include './views/footer.php'; ?>
 </body>
 </html>

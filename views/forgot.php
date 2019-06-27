@@ -45,7 +45,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
 
         Please click this link to reset your password:
 
-        http://localhost/reset.php?email='.$email.'&hash='.$hash;  
+        http://localhost/views/reset.php?email='.$email.'&hash='.$hash;  
 
         mail($to, $subject, $message_body);
 
@@ -59,8 +59,8 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
 <html>
 
 <head>
-	<link rel="stylesheet" href="style/login-register.css">
-	<link rel="stylesheet" href="style/header-footer.css">
+	<link rel="stylesheet" href="../style/login-register.css">
+	<link rel="stylesheet" href="../style/header-footer.css">
 	<link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-dark.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Reset Your Password</title>
@@ -84,5 +84,6 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
 			<button class="button button-block" />Reset</button>
 		</form>
 	</div>
+	<?php include 'footer.php'; ?>
 </body>
 </html>

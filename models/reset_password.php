@@ -28,12 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		);
         if ($result) {
         	$_SESSION['message'] = "Your password has been reset successfully!";
-        	header("location: success.php");    
+        	header("location: ../views/success.php");    
         }
     }
     else {
         $_SESSION['message'] = "Two passwords you entered don't match, try again!";
-        header("location: error.php");    
+        header("location: ../views/error.php");    
     }
 }
 ?>

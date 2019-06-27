@@ -1,7 +1,7 @@
 function like(like) {
 	var postID = like.name;
 	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("POST", "like.php");
+	xmlhttp.open("POST", "../models/like.php");
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlhttp.onreadystatechange = () => {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -15,7 +15,7 @@ function like(like) {
 function unlike(like) {
 	var postID = like.name;
 	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("POST", "unlike.php");
+	xmlhttp.open("POST", "../models/unlike.php");
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlhttp.onreadystatechange = () => {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -40,7 +40,7 @@ function submitComment(post) {
 	var content = content.replace(/;/g, '');
 	var content = content.replace(/&/g, '');
 	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("POST", "comment_submit.php");
+	xmlhttp.open("POST", "../models/comment_submit.php");
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlhttp.onreadystatechange = () => {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -76,7 +76,7 @@ function deleteComment(but) {
 	var commentID = but.id;
 	var divID = "comment-block" + commentID;
 	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("POST", "comment_delete.php");
+	xmlhttp.open("POST", "../models/comment_delete.php");
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlhttp.onreadystatechange = () => {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {

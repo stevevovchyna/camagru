@@ -15,7 +15,7 @@ function outputJSON($msg, $file = '', $post_id = '', $status = 'error'){
 }
 
 $random = bin2hex(random_bytes(10));
-$file = "user_images/".$random.".png";
+$file = "../user_images/".$random.".png";
 
 // Check for errors
 if($_FILES['SelectedFile']['error'] > 0){
@@ -59,7 +59,6 @@ if (move_uploaded_file($_FILES['SelectedFile']['tmp_name'], $file)) {
 		$dest = imagecreatefrompng($dest_image);
 	}
 	imagesavealpha($dest, true);
-	// header('Content-Type: image/png');
 	$back = imagecreatetruecolor(imagesx($src), imagesy($src));
 	imagecopyresized($back, $dest, 0, 0, 0, 0, imagesx($src), imagesy($src), imagesx($dest), imagesy($dest));
 	imagecopy($back, $src, 0, 0, 0, 0, imagesx($src), imagesy($src));
@@ -76,10 +75,7 @@ if (move_uploaded_file($_FILES['SelectedFile']['tmp_name'], $file)) {
 			'user_id' => $_SESSION['user_id'],
 			'date_created' => date("Y-m-d H:i:s")
 		)
-	);
-	if ($result) {
-		$_SESSION['message'] = "Picture uploaded!";
-	}	
+	);	
 	$query = "SELECT LAST_INSERT_ID()";
 	$statement = $pdo->prepare($query);
 	$statement->execute();

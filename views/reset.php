@@ -39,8 +39,8 @@ else {
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="style/login-register.css">
-	<link rel="stylesheet" href="style/header-footer.css">
+	<link rel="stylesheet" href="../style/login-register.css">
+	<link rel="stylesheet" href="../style/header-footer.css">
 	<link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-dark.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Reset Your Password</title>
@@ -48,7 +48,7 @@ else {
 <body>
 	<div class="login-register">
 		<h1>Choose Your New Password</h1>
-		<form action="reset_password.php" method="post">
+		<form action="../models/reset_password.php" method="post">
 			<div>
 				<label>
 					New Password
@@ -67,5 +67,6 @@ else {
 			<button>Apply</button>
 		</form>
 	</div>
+	<?php include 'footer.php'; ?>
 </body>
 </html>

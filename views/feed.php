@@ -9,8 +9,8 @@ if (isset($_SESSION['previous'])) {
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="style/feed.css">
-	<link rel="stylesheet" href="style/header-footer.css">
+	<link rel="stylesheet" href="../style/feed.css">
+	<link rel="stylesheet" href="../style/header-footer.css">
 	<link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-dark.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Camagru</title>
@@ -20,7 +20,7 @@ if (isset($_SESSION['previous'])) {
 		<?php
 			if ( $_SESSION['logged_in'] === true ) {
 				echo "<button> Welcome, ".$_SESSION['username']."</button>";
-				echo "<a href=\"index.php\"><button>Home</button></a>";
+				echo "<a href=\"../index.php\"><button>Home</button></a>";
 				echo "<a href=\"profile.php\"><button>My Profile</button></a>";
 				echo "<a href=\"edit_profile_page.php\"><button>Edit Profile</button></a>";
 				echo "<a href=\"logout.php\"><button>Log Out</button></a>";
@@ -30,6 +30,9 @@ if (isset($_SESSION['previous'])) {
 				echo "<a href=\"login_page.php\"><button>Log In</button></a>";
 			}
 		?>
+	</header>
+	<header class="sticky">
+		
 	</header>
 	<div class="feed-container">
 		<?php
@@ -53,7 +56,7 @@ if (isset($_SESSION['previous'])) {
 		}
 		$offset = ($pageno - 1) * $no_of_records_per_page;
 
-		$query = "SELECT * FROM posts INNER JOIN users ON posts.user_id = users.user_id ORDER BY posts . date_created DESC LIMIT ".$offset. ", ".$no_of_records_per_page;
+		$query = "SELECT * FROM posts INNER JOIN users ON posts.user_id = users.user_id ORDER BY posts.date_created DESC LIMIT ".$offset. ", ".$no_of_records_per_page;
 		$statement = $pdo->prepare($query);
 		$statement->execute();		
 		$post = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -88,7 +91,7 @@ if (isset($_SESSION['previous'])) {
 			//POST LABEL
 			echo "<div class=\"post card\">";
 			echo "<div class=\"image-container\">";
-			echo "<img src=\"".$postik['post_url']."\">";
+			echo "<img src=\"../".$postik['post_url']."\">";
 			echo "<div class=\"overlay\"><p class=\"author\">@".$postik['username']." on ".date("F j, Y, g:i a", strtotime($postik['date_created']))." / ".$count.$likeword."</p></div>";
 			echo "</div>";
 			
@@ -135,6 +138,6 @@ if (isset($_SESSION['previous'])) {
 			</div>
 		</form>
 	</footer>
-	<script src="js/feed.js"></script>
+	<script src="../js/feed.js"></script>
 </body>
 </html>

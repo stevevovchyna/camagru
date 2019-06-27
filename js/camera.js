@@ -34,7 +34,7 @@ var png = "";
 	}, function (err){
 		console.log(err.code);
 	});
-
+// NO WEB CAM UPLOAD
 	document.getElementById('_submit').addEventListener('click', () => {
 		var _file = document.getElementById('_file');
 		if (_file.files.length === 0) {
@@ -45,7 +45,7 @@ var png = "";
 		data.append('SelectedFile', _file.files[0]);
 		data.set('PNG', png);
 		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("POST", "noWebCam.php");
+		xmlhttp.open("POST", "../models/noWebCam.php");
 		xmlhttp.onreadystatechange = () => {
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 				try {
@@ -53,7 +53,7 @@ var png = "";
 					var newDiv = document.createElement("div");
 					newDiv.setAttribute('id', "post" + resp.post_id);
 					var newImage = document.createElement("img");
-					newImage.setAttribute('src', resp.file);
+					newImage.setAttribute('src', "../" + resp.file);
 					var delButton = document.createElement('button');
 					delButton.setAttribute('class', 'small');
 					delButton.setAttribute('id', resp.post_id);
@@ -62,7 +62,7 @@ var png = "";
 					var thumb = document.getElementById('thumb');
 					newDiv.appendChild(newImage);
 					newDiv.appendChild(delButton);
-					thumb.append(newDiv);
+					thumb.prepend(newDiv);
 				} catch (e) {
 					var resp = {
 						status: "error",
@@ -73,12 +73,12 @@ var png = "";
 		};
 		xmlhttp.send(data);
 	});
-
+// WEB CAM UPLOAD
 	document.getElementById('capture').addEventListener('click', () => {
 		context.drawImage(video, 0, 0, 500, 375);
 		picture = canvas.toDataURL("image/png");
 		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("POST", "picsmerge.php");
+		xmlhttp.open("POST", "../models/picsmerge.php");
 		xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xmlhttp.onreadystatechange = () => {
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -87,7 +87,7 @@ var png = "";
 					var newDiv = document.createElement("div");
 					newDiv.setAttribute('id', "post" + resp.post_id);
 					var newImage = document.createElement("img");
-					newImage.setAttribute('src', resp.file);
+					newImage.setAttribute('src', "../" + resp.file);
 					var delButton = document.createElement('button');
 					delButton.setAttribute('class', 'small');
 					delButton.setAttribute('id', resp.post_id);
@@ -96,7 +96,7 @@ var png = "";
 					var thumb = document.getElementById('thumb');
 					newDiv.appendChild(newImage);
 					newDiv.appendChild(delButton);
-					thumb.append(newDiv);
+					thumb.prepend(newDiv);
 				} catch (e) {
 					var resp = {
 						status: "error",
@@ -133,7 +133,7 @@ function delPostButton(el) {
 	var postID = el.id;
 	var divID = "post" + postID;
 	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("POST", "post_delete.php");
+	xmlhttp.open("POST", "../models/post_delete.php");
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlhttp.onreadystatechange = () => {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
