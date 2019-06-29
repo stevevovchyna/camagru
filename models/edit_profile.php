@@ -2,13 +2,39 @@
 require $_SERVER['DOCUMENT_ROOT'] . '/config/database.php';
 session_start();
 
-$newusername = $_POST['username'];
-$newemail = $_POST['email'];
-$newnotifications = $_POST['notifications'];
-$currentemail = $_SESSION['email'];
-$currentusername = $_SESSION['username'];
-$currentnotifications = $_SESSION['notifications'];
+$newusername = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
+$newnotifications = filter_var($_POST['notifications'], FILTER_SANITIZE_STRING);
+$currentusername = filter_var($_POST['currentusername'], FILTER_SANITIZE_STRING);
+$currentnotifications = filter_var($_POST['currentnotifications'], FILTER_SANITIZE_STRING);
 $message = "Data updated:";
+
+$newemail = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+if (filter_var($newemail, FILTER_VALIDATE_EMAIL) === false) {
+	$_SESSION['message'] = 'Invalid parameters provided for data edit!';
+	header("location: ../views/error.php");
+}
+$currentemail = filter_var($_POST['currentemail'], FILTER_SANITIZE_EMAIL);
+if (filter_var($currentemail, FILTER_VALIDATE_EMAIL) === false) {
+	$_SESSION['message'] = 'Invalid parameters provided for data edit!';
+	header("location: ../views/error.php");
+}
+if (filter_var($newusername, FILTER_SANITIZE_STRING) === false) {
+	$_SESSION['message'] = 'Invalid parameters provided for data edit!';
+	header("location: ../views/error.php");
+}
+if (filter_var($currentusername, FILTER_SANITIZE_STRING) === false) {
+	$_SESSION['message'] = 'Invalid parameters provided for data edit!';
+	header("location: ../views/error.php");
+}
+if (filter_var($newnotifications, FILTER_SANITIZE_STRING) === false) {
+	$_SESSION['message'] = 'Invalid parameters provided for data edit!';
+	header("location: ../views/error.php");
+}
+if (filter_var($currentnotifications, FILTER_SANITIZE_STRING) === false) {
+	$_SESSION['message'] = 'Invalid parameters provided for data edit!';
+	header("location: ../views/error.php");
+}
+
 
 if ($newusername !== $currentusername) {
 	$query = "UPDATE users SET username = :username WHERE email = :email";
@@ -44,7 +70,7 @@ if ($newnotifications !== $currentnotifications) {
 	$result = $statement->execute(
 		array(
 			'notifications' => $newnotifications,
-			'currentemail' => $_SESSION['email']
+			'currentemail' => $currentemail
 		)
 	);
 	if ($result) {

@@ -78,6 +78,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				<label for="no">No</label>
 			</div>
 		</div>
+		<input type="hidden" name="currentusername" value="<?= $username ?>">
+		<input type="hidden" name="currentemail" value="<?= $email ?>">
+		<input type="hidden" name="currentnotifications" value="<?= $notifications ?>">
 		<button type="submit" name="edit" />Submit changes</button>
 	</form>
 	<span class="editing-toast toast <?php if(!isset($_SESSION['alert']) || $_SESSION['alert'] === ""){echo "hidden";}?>"><?=$_SESSION['alert']?></span>
@@ -91,6 +94,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				<label>Confirm New Password</label>
 				<input type="password" required name="confirmpassword" autocomplete="off" />
 			</div>
+			<input type="hidden" name="email" value="<?= $email ?>">
+			<input type="hidden" name="hash" value="<?= $hash ?>">
 			<button class="button button-block" />Reset Password</button>
 		</form>
 	<?php include 'footer.php'; ?>
