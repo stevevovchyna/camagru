@@ -27,7 +27,9 @@ if(!getimagesize($_FILES['SelectedFile']['tmp_name'])){
 }
 
 if ($_FILES['SelectedFile']['type'] !== 'image/jpeg' &&
+	$_FILES['SelectedFile']['type'] !== 'image/JPEG' &&
 	$_FILES['SelectedFile']['type'] !== 'image/png' &&
+	$_FILES['SelectedFile']['type'] !== 'image/PNG' &&
 	$_FILES['SelectedFile']['type'] !== 'image/jpg' &&
 	$_FILES['SelectedFile']['type'] !== 'image/JPG' &&
 	$_FILES['SelectedFile']['type'] !== 'image/gif') {
@@ -36,7 +38,7 @@ if ($_FILES['SelectedFile']['type'] !== 'image/jpeg' &&
 
 // Check filesize
 if($_FILES['SelectedFile']['size'] > 1000000){
-    outputJSON('File uploaded exceeds maximum upload size.');
+    outputJSON('File uploaded exceeds maximum upload size 1Mb.');
 }
 
 $png = $_POST['PNG'];
@@ -81,6 +83,6 @@ if (move_uploaded_file($_FILES['SelectedFile']['tmp_name'], $file)) {
 	$statement->execute();
 	$arr = $statement->fetchAll(PDO::FETCH_ASSOC);
 	// Success!
-	outputJSON('File uploaded successfully to ' . $file, $file, $arr[0]['LAST_INSERT_ID()'], 'success');
+	outputJSON('File uploaded successfully', $file, $arr[0]['LAST_INSERT_ID()'], 'success');
 }
 ?>

@@ -26,11 +26,13 @@ if ( $_SESSION['logged_in'] != true ) {
 				</div>
 			<?php } ?>
 		</div>
-		<div id="buttons">
+		<div id="take-pic">
 			<button id="capture" disabled >Take picture</button>
+		</div>
+		<div id="upload-image">
 			<input type='file' id='_file'>
+			<label id="upload-label-button" class="button" for="_file">Choose a file</label>
 			<input type='button' id='_submit' value='Upload!' disabled >
-			<p id="response"></p>
 		</div>
 	</div>
 	<div class="thumb" id="thumb">
@@ -51,4 +53,10 @@ if ( $_SESSION['logged_in'] != true ) {
 		}
 		?>
 	</div>
+</div>
+<div id="myModal" class="modal">
+	<div class="modal-content">
+    	<span onclick="closeModal(this)" class="close">&times;</span>
+    	<p id="message"></p>
+  	</div>
 </div>

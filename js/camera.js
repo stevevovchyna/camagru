@@ -38,7 +38,10 @@ var png = "";
 	document.getElementById('_submit').addEventListener('click', () => {
 		var _file = document.getElementById('_file');
 		if (_file.files.length === 0) {
-			document.getElementById('response').innerText = "Please choose the file!";
+			var modal = document.getElementById("myModal");
+			var message = document.getElementById('message');
+			message.innerText = "Please make sure you've chosen the file!";
+			modal.style.display = "block";
 			return;
 		}
 		var data = new FormData();
@@ -50,24 +53,33 @@ var png = "";
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 				try {
 					var resp = JSON.parse(xmlhttp.response);
-					var newDiv = document.createElement("div");
-					newDiv.setAttribute('id', "post" + resp.post_id);
-					var newImage = document.createElement("img");
-					newImage.setAttribute('src', "../" + resp.file);
-					var delButton = document.createElement('button');
-					delButton.setAttribute('class', 'small');
-					delButton.setAttribute('id', resp.post_id);
-					delButton.setAttribute('onclick', 'delPostButton(this)');
-					delButton.innerText = "Delete";
-					var thumb = document.getElementById('thumb');
-					newDiv.appendChild(newImage);
-					newDiv.appendChild(delButton);
-					thumb.prepend(newDiv);
+					if (resp.status === 'success') {
+						var newDiv = document.createElement("div");
+						newDiv.setAttribute('id', "post" + resp.post_id);
+						var newImage = document.createElement("img");
+						newImage.setAttribute('src', "../" + resp.file);
+						var delButton = document.createElement('button');
+						delButton.setAttribute('class', 'small');
+						delButton.setAttribute('id', resp.post_id);
+						delButton.setAttribute('onclick', 'delPostButton(this)');
+						delButton.innerText = "Delete";
+						var thumb = document.getElementById('thumb');
+						newDiv.appendChild(newImage);
+						newDiv.appendChild(delButton);
+						thumb.prepend(newDiv);
+						showModal(resp);
+					} else {
+						var modal = document.getElementById("myModal");
+						var message = document.getElementById('message');
+						message.innerText = resp.data;
+						modal.style.display = "block";
+					}
 				} catch (e) {
 					var resp = {
 						status: "error",
 						data: "Unknown error occured: " + xmlhttp.responseText
 					};
+					showModal(resp);
 				}
 			}
 		};
@@ -97,11 +109,13 @@ var png = "";
 					newDiv.appendChild(newImage);
 					newDiv.appendChild(delButton);
 					thumb.prepend(newDiv);
+					showModal(resp);
 				} catch (e) {
 					var resp = {
 						status: "error",
 						data: "Unknown error occured: " + xmlhttp.responseText
 					};
+					showModal(resp);
 				}
 			}
 		}
@@ -144,3 +158,16 @@ function delPostButton(el) {
 	xmlhttp.send("post_id=" + postID);
 }
 
+function closeModal(el) {
+	var modal = document.getElementById("myModal");
+	var message = document.getElementById('message');
+	message.innerText = "";
+	modal.style.display = "none";
+}
+
+function showModal(resp) {
+	var modal = document.getElementById("myModal");
+	var message = document.getElementById('message');
+	message.innerText = resp.data;
+	modal.style.display = "block";
+}

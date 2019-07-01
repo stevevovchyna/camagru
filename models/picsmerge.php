@@ -55,7 +55,7 @@ function outputJSON($msg, $file = '', $post_id = '', $status = 'error'){
     )));
 }
 
-outputJSON('File uploaded successfully to ' . $file, $file, $arr[0]['LAST_INSERT_ID()'], 'success');
+outputJSON('File uploaded successfully', $file, $arr[0]['LAST_INSERT_ID()'], 'success');
 
 
 ?>
