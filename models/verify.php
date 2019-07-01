@@ -28,16 +28,18 @@ if(isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !
         header("location: ../views/error.php");
     }
     else {
-        $_SESSION['message'] = "Your account has been activated!";
-        // Set the user status to active (active = 1)
+		// Set the user status to active (active = 1)
 		$query = "UPDATE users SET active = '1' WHERE email = :email";
 		$statement = $pdo->prepare($query);
 		$statement->execute(
 			array(
 				'email' => $email
 			)
-		);		
-        $_SESSION['active'] = 1;
+		);
+		session_unset();
+		session_destroy(); 
+		session_start();
+        $_SESSION['message'] = "Your account has been activated!";
         header("location: ../views/success.php");
     }
 }

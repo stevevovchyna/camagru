@@ -38,7 +38,7 @@ if (isset($_SESSION['previous'])) {
 	<div class="feed-container">
 		<?php
 
-		$no_of_records_per_page = 3;
+		$no_of_records_per_page = 5;
 		$query = "SELECT * FROM posts";
 		$statement = $pdo->prepare($query);
 		$statement->execute();		
