@@ -35,6 +35,10 @@ function sanitize(str) {
 
 function submitComment(post) {
 	var postID = post.name;
+	if (document.getElementById(postID).value === "") {
+		showModal("Your comment can't be empty!");
+		return;
+	}
 	var id = "comment" + postID;
 	var content = sanitize(document.getElementById(postID).value);
 	var content = content.replace(/;/g, '');
@@ -61,6 +65,7 @@ function submitComment(post) {
 			delButton.id = resp.comment_id;
 			delButton.classList.add('hidden');
 			delButton.classList.add('small');
+			delButton.classList.add('del-button');
 			delButton.classList.add('delete-button' + resp.comment_id);
 			delButton.innerText = "Delete";
 			delButton.setAttribute('onclick', 'deleteComment(this)');
@@ -94,6 +99,25 @@ function showDelButton(el) {
 }
 
 function showActions(el) {
-	var child = el.nextSibling;
+	var child = el.nextElementSibling;
 	child.classList.toggle('hidden');
 }
+
+function closeModal(el) {
+	var modal = document.getElementById("myModal");
+	var message = document.getElementById('message');
+	message.innerText = "";
+	modal.style.display = "none";
+}
+
+function showModal(resp) {
+	var modal = document.getElementById("myModal");
+	var message = document.getElementById('message');
+	message.innerText = resp;
+	modal.style.display = "block";
+}
+
+function show_more_button(el) {
+	el.nextElementSibling.classList.toggle('hidden');
+}
+
