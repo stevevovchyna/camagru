@@ -18,6 +18,7 @@ if ($_SESSION['logged_in'] != true) {
 	$active = $_SESSION['active'];
 	$notifications = $_SESSION['notifications'];
 }
+echo "message is:" . $_SESSION['message'];
 ?>
 <!DOCTYPE html>
 <html>
