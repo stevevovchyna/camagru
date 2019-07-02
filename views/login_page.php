@@ -16,6 +16,7 @@ if ( $_SESSION['logged_in'] === true ) {
 	<title>Login</title>
 	<link rel="stylesheet" href="../style/login-register.css">
 	<link rel="stylesheet" href="../style/header-footer.css">
+	<link rel="stylesheet" href="../style/index.css">
 	<link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-dark.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>

@@ -51,7 +51,7 @@ if (isset($_SESSION['previous'])) {
 		?>
 			<!-- POST LABEL -->
 			<div class="post card">
-				<div onclick="show_more_button(this)" class="image-container">
+				<div <?php if ( $_SESSION['logged_in'] === true && $_SESSION['active'] == 1) { echo 'onclick="show_more_button(this)"';}?>  class="image-container">
 					<img src="../<?= $postik['post_url'] ?>">
 					<div class="overlay">
 						<p class="author">@<?= $postik['username'] ?> on <?= date("F j, Y, g:i a", strtotime($postik['date_created'])) ?> / <?= $count.$likeword ?></p>
@@ -63,7 +63,7 @@ if (isset($_SESSION['previous'])) {
 					<button name="<?= $postik['post_id'] ?>" onclick="<?= $like ?>" class="like-button small secondary"><span><?= $count.$likeword ?></span></button>
 					<hr>
 
-		<?php	
+			<?php	
 				$query = "SELECT * FROM comments INNER JOIN users ON comments.user_id = users.user_id WHERE post_id = :post_id";
 				$statement = $pdo->prepare($query);
 				$statement->execute(
@@ -72,7 +72,7 @@ if (isset($_SESSION['previous'])) {
 					)
 				);
 				$fetch_comment = $statement->fetchAll(PDO::FETCH_ASSOC);
-		?>
+			?>
 
 				<div class="comment" id="comment<?=$post_id?>">
 		<?php	foreach ($fetch_comment as $comment) { ?>
