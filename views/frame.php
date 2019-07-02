@@ -14,8 +14,10 @@ if ( $_SESSION['logged_in'] != true ) {
 		<div class="container">
 			<video id="video" width="60%" height="45%"></video>
 			<canvas id="canvas" width="500" height="375"></canvas>
-			<span onclick="pngPickerCloseButton(this)" class="closebtn">&times;</span>
-			<img id="expandedImg">
+			<img id="expandedImg" onclick="pngPickerCloseButton(this)">
+			<div class="overlay">
+				<p>Click the image to hide the mask!</p>
+			</div>
 		</div>
 		<div class="row">
 			<?php

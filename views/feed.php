@@ -59,7 +59,6 @@ if (isset($_SESSION['previous'])) {
 				</div>
 		<?php if ($_SESSION['logged_in'] == true && $_SESSION['active'] == 1) { ?>
 
-				<!-- <button class="hidden more-button" onclick="showActions(this)">&bull;&bull;&bull;</button> -->
 				<div class="info hidden">
 					<button name="<?= $postik['post_id'] ?>" onclick="<?= $like ?>" class="like-button small secondary"><span><?= $count.$likeword ?></span></button>
 					<hr>
