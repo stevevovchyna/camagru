@@ -198,7 +198,7 @@ footer.sticky {
 	}
 }
 
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 550px) {
 	.feed-container {
 		margin: 3% 5% 12% 5% !important;
 	}

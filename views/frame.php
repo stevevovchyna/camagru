@@ -8,11 +8,11 @@ if ( $_SESSION['logged_in'] != true ) {
 <div class="frame">
 	<div id="picture-png-buttons">
 		<div class="video1">
-			<video id="video1" width="500" height="375"></video>
+			<video id="video1" width="60%" height="45%"></video>
 			<canvas id="canvas" width="500" height="375"></canvas>
 		</div>
 		<div class="container">
-			<video id="video" width="500" height="375"></video>
+			<video id="video" width="60%" height="45%"></video>
 			<canvas id="canvas" width="500" height="375"></canvas>
 			<span onclick="pngPickerCloseButton(this)" class="closebtn">&times;</span>
 			<img id="expandedImg">
@@ -45,13 +45,12 @@ if ( $_SESSION['logged_in'] != true ) {
 			)
 		);
 		$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
-		foreach ($posts as $post) {
-			echo "<div id=\"post".$post['post_id']."\">";
-			echo "<img src=\"../".$post['post_url']."\">";
-			echo "<button class=\"small\" id=\"".$post['post_id']."\" onclick=\"delPostButton(this)\">Delete</button>";
-			echo "</div>";
-		}
-		?>
+		foreach ($posts as $post) { ?>
+			<div class="user_post" id="post<?= $post['post_id']?>">
+				<img src="../<?= $post['post_url']?>">
+				<button class="small" id="<?= $post['post_id']?>" onclick="delPostButton(this)">Delete</button>
+			</div>
+		<?php } ?>
 	</div>
 </div>
 <div id="myModal" class="modal">

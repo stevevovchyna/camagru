@@ -22,7 +22,6 @@ body {
   width: 25%;
   padding: 0px !important;
   display: inline-block !important;
-
 }
 
 /* Style the images inside the grid */
@@ -38,7 +37,6 @@ body {
 /* Clear floats after the columns */
 .row:after {
   content: "";
-  /* display: table !important; */
   clear: both;
 }
 
@@ -59,7 +57,7 @@ body {
 .video1, .container {
 	position: relative;
 	padding: 0 !important;
-	margin: 0% auto 0% 30% !important;
+	margin: 0% 15% 0% 15% !important;
 }
 
 /* Closable button inside the expanded image */
@@ -70,6 +68,10 @@ body {
   color: white;
   font-size: 35px;
   cursor: pointer;
+}
+
+#video1, #video {
+	margin: auto;
 }
 
 #video {
@@ -84,10 +86,13 @@ body {
 }
 
 #expandedImg {
+	margin-left: 20%;
 	position: absolute;
 	top: 0;
 	left: 0;
 	z-index: 3;
+
+	width: 60%;
 }
 
 #thumb {
@@ -108,8 +113,10 @@ body {
 
 #picture-png-buttons {
 	display: inline-block !important;
-}
+	margin-bottom: 5% !important;
+	text-align: center;
 
+}
 
 ::-webkit-scrollbar {
 	width: 5px;
@@ -193,4 +200,66 @@ body {
 	overflow: hidden;
 	position: absolute;
 	z-index: -1;
+}
+
+@media only screen and (max-width: 1000px) {
+	#capture {
+		margin: 0.2rem auto !important;
+		width: 95%;
+	}
+	#upload-label-button, #_submit {
+		margin: 0.2rem auto !important;
+	}
+	.frame {
+		margin: 0.2rem 0.1rem 1rem 0.1rem !important;
+	}
+	#picture-png-buttons {
+		max-width: 75%;
+	}
+	#thumb {
+		display: block;
+		height: 80vh;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.frame {
+		display: block;
+		margin-bottom: 2.5rem !important;
+	}
+	#picture-png-buttons {
+		margin: 1rem 1rem 1rem 1rem !important;
+		max-width: 95%;
+	}
+	.row {
+		margin: 1rem 1rem 1rem 1rem !important;
+		max-width: 95%;
+	}
+	#thumb {
+		width: 95%;
+		margin: 1rem 1rem 1rem 1rem !important;
+	}
+	header {
+		text-align: center;
+	}
+	header a > button{
+		font-size: 0.7rem;
+	}
+}
+
+@media only screen and (max-width: 336px) {
+	#picture-png-buttons {
+		margin-bottom: 0% !important;
+	}
+
+	#upload-label-button, #_submit {
+		width: 90% !important;
+	}
+
+	#upload-label-button, #_submit, #capture {
+		padding: 0.2rem !important;
+	}
+	#thumb {
+		margin-left: 0.5rem !important;
+	}
 }
