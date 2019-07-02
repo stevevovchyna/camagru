@@ -17,16 +17,47 @@ body {
 
 #cama{
 	text-align: center;
-	margin-top: 15%;
+	margin: 15% 5% auto 5%;
 	font-size: 5rem;
 }
 
 #logout {
 	text-align: center;
 	font-size: 5rem;
-	margin-top: 15%;
+	margin: 15% 5% auto 5%;
 }
 
 #home-button {
 	text-align: center;
+}
+
+@media only screen and (max-width: 425px) {
+	#welcome {
+		display: none;
+	}
+	header {
+		text-align: center;
+	}
+	header a > button{
+		font-size: 0.7rem;
+	}
+	#cama {
+		font-size: 2rem !important;
+	}
+	#logout {
+		font-size: 2rem !important;
+	}
+}
+
+
+@media only screen and (max-width: 336px) {
+	header a > button{
+		font-size: 0.6rem !important;
+	}
+	#cama {
+		font-size: 2rem !important;
+	}
+	#logout {
+		font-size: 2rem !important;
+	}
 }

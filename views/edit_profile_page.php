@@ -48,12 +48,12 @@ else {
 		<div>
 			<div>
 				<label>Username</label>
-				<input type="text" required autocomplete="off" name='username' value="<?= $username ?>"/>
+				<input class="inputto" type="text" required autocomplete="off" name='username' value="<?= $username ?>"/>
 			</div>
 		</div>
 		<div>
 			<label>Email Address</label>
-			<input type="email" required autocomplete="off" name='email' value="<?= $email ?>"/>
+			<input class="inputto" type="email" required autocomplete="off" name='email' value="<?= $email ?>"/>
 		</div>
 		<div>
 			<label>Notifications</label>
@@ -79,11 +79,11 @@ else {
 		<h2>Choose Your New Password</h2>
 		<div>
 			<label>New Password</label>
-			<input type="password" required name="newpassword" autocomplete="off" />
+			<input class="inputto" type="password" required name="newpassword" autocomplete="off" />
 		</div>
 		<div>
 			<label>Confirm New Password</label>
-			<input type="password" required name="confirmpassword" autocomplete="off" />
+			<input class="inputto" type="password" required name="confirmpassword" autocomplete="off" />
 		</div>
 		<input type="hidden" name="email" value="<?= $email ?>">
 		<input type="hidden" name="hash" value="<?= $hash ?>">

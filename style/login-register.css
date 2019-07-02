@@ -1,6 +1,7 @@
 .login-register {
 	margin: 15% 30% auto 30%;
 }
+
 .login-register-edit {
 	margin: 2% 30% 2% 30% !important;
 }
@@ -92,6 +93,12 @@
 	header {
 		text-align: center;
 	}
+	.login-register input {
+		width: 95%;
+	}
+	.login-register-edit input.inputto {
+		width: 95%;
+	}
 }
 
 
@@ -107,5 +114,11 @@
 	}
 	header {
 		text-align: center;
+	}
+	.login-register input {
+		width: 95%;
+	}
+	.login-register-edit input.inputto {
+		width: 95%;
 	}
 }
