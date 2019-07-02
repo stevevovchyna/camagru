@@ -9,6 +9,103 @@
 	margin-bottom: 15% !important;
 }
 
-span.editing-toast{
-	bottom: 6rem !important;
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 10; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+#message {
+    color: white;
+    text-align: center;
+    font-size: 1.5rem
+}
+
+.modal-content {
+	background-color: #1f1f1f7e;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 0px solid #888;
+	width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+	color: rgb(223, 223, 223);
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+  
+.close:hover, .close:focus {
+	color: rgb(87, 87, 87);
+	text-decoration: none;
+	cursor: pointer;
+}
+
+@media only screen and (max-width: 1024px) {
+	.login-register {
+		margin: 5% 15% auto 15% !important;
+	}
+	.login-register-edit {
+		margin: 2% 15% 2% 15% !important;
+	}
+	.login-register-edit:first-child {
+		margin-bottom: 10% !important;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.login-register {
+		margin: 5% 10% auto 10% !important;
+	}
+	.login-register-edit {
+		margin: 2% 10% 5% 10% !important;
+	}
+	.login-register-edit:first-child {
+		margin-bottom: 10% !important;
+	}
+	header {
+		text-align: center;
+	}
+}
+
+@media only screen and (max-width: 425px) {
+	.login-register {
+		margin: 5% 5% auto 5% !important;
+	}
+	.login-register-edit {
+		margin: 2% 5% 15% 5% !important;
+	}
+	.login-register-edit:first-child {
+		margin-bottom: 10% !important;
+	}
+	#welcome {
+		display: none;
+	}
+	header {
+		text-align: center;
+	}
+}
+
+
+@media only screen and (max-width: 336px) {
+	.login-register {
+		margin: 5% 5% auto 5% !important;
+	}
+	.login-register-edit {
+		margin: 2% 5% 15% 5% !important;
+	}
+	#welcome {
+		display: none;
+	}
+	header {
+		text-align: center;
+	}
 }

@@ -2,6 +2,12 @@
 require $_SERVER['DOCUMENT_ROOT'] . '/config/database.php';
 session_start();
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	if (isset($_POST['edit'])) {
+		if ($_POST['email'] !== $email ||
+			$_POST['username'] !== $username ||
+			$_POST['notifications'] !== $notifications) {
+			
 $newusername = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
 $newnotifications = filter_var($_POST['notifications'], FILTER_SANITIZE_STRING);
 $currentusername = filter_var($_POST['currentusername'], FILTER_SANITIZE_STRING);
@@ -78,10 +84,19 @@ if ($newnotifications !== $currentnotifications) {
 		$message = $message . " notifications";
 	}
 }
+if ($message === "Data updated:") {
+	$_SESSION['alert'] = "Please edit some data in order to submit changes!";
+	header("location: ../views/edit_profile_page.php");
+} else {
+	$_SESSION['alert'] = $message . '.';
+	header("location: ../views/edit_profile_page.php");
+}
 
-$_SESSION['alert'] = $message . '.';
+}
+}
+}
 
-header("location: edit_profile_page.php");
+
 
 
 ?>
